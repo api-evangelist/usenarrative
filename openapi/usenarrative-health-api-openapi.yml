@@ -1,0 +1,25 @@
+openapi: 3.1.0
+info:
+  title: Narrative Sports Health API
+  version: 1.0.0
+servers:
+- url: https://api.narrative-sports.com
+tags:
+- name: Health
+paths:
+  /v1/health:
+    get:
+      tags:
+      - Health
+      summary: Health
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Success
+components:
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

@@ -1,0 +1,401 @@
+openapi: 3.1.0
+info:
+  title: Narrative Sports Health Highlights API
+  version: 1.0.0
+servers:
+- url: https://api.narrative-sports.com
+tags:
+- name: Highlights
+paths:
+  /v1/highlights:
+    get:
+      tags:
+      - Highlights
+      summary: List Highlights
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: task_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListHighlightsResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+  /v1/highlights/{highlight_id}:
+    get:
+      tags:
+      - Highlights
+      summary: Get Highlight
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: highlight_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Highlight Id
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetHighlightResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+  /v1/highlights/{highlight_id}/signed-url:
+    get:
+      tags:
+      - Highlights
+      summary: Get Signed URL
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: highlight_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Highlight Id
+      - name: expiry
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 86400
+          minimum: 900
+          default: 86400
+          title: Expiry
+      - name: download
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Download
+      - name: variant
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Variant
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignedUrlResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+  /v1/highlights/batch-signed-urls:
+    post:
+      tags:
+      - Highlights
+      summary: Batch Signed URLs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchSignedUrlRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchSignedUrlResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+components:
+  schemas:
+    ListHighlightsResponse:
+      properties:
+        highlights:
+          items:
+            $ref: '#/components/schemas/HighlightMetadata'
+          type: array
+          title: Highlights
+        total:
+          type: integer
+          title: Total
+      type: object
+      required:
+      - highlights
+      - total
+      title: ListHighlightsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    SignedUrlResponse:
+      properties:
+        signed_url:
+          type: string
+          title: Signed Url
+        expires_in_seconds:
+          type: integer
+          title: Expires In Seconds
+      type: object
+      required:
+      - signed_url
+      - expires_in_seconds
+      title: SignedUrlResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    GetHighlightResponse:
+      properties:
+        highlight:
+          $ref: '#/components/schemas/HighlightMetadata'
+      type: object
+      required:
+      - highlight
+      title: GetHighlightResponse
+    BatchSignedUrlResponse:
+      properties:
+        signed_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Urls
+        signed_poster_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Poster Urls
+          default: {}
+        signed_portrait_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Portrait Urls
+          default: {}
+        signed_portrait_poster_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Portrait Poster Urls
+          default: {}
+        signed_square_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Square Urls
+          default: {}
+        signed_square_poster_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Square Poster Urls
+          default: {}
+        expires_in_seconds:
+          type: integer
+          title: Expires In Seconds
+      type: object
+      required:
+      - signed_urls
+      - expires_in_seconds
+      title: BatchSignedUrlResponse
+    HighlightMetadata:
+      properties:
+        id:
+          type: string
+          title: Id
+        event_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Event Type
+        custom_category_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Custom Category Name
+        event_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Event Description
+        event_timestamp_seconds:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Event Timestamp Seconds
+        edit_length:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Edit Length
+        inclusion_reasoning:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Inclusion Reasoning
+        created_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Created At
+        otio_edit:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Otio Edit
+        target_team:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Target Team
+        target_players:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Target Players
+        otio_crop:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Otio Crop
+        source_archive:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Source Archive
+        source_window:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Source Window
+        render_windows:
+          anyOf:
+          - items:
+              additionalProperties: true
+              type: object
+            type: array
+          - type: 'null'
+          title: Render Windows
+        editor_state:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Editor State
+        editor_revision:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Editor Revision
+        editor_project_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Editor Project Id
+        fight_number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Fight Number
+        round_number:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Round Number
+        fight_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Fight Name
+        event_metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Event Metadata
+      type: object
+      required:
+      - id
+      title: HighlightMetadata
+    BatchSignedUrlRequest:
+      properties:
+        highlight_ids:
+          items:
+            type: string
+          type: array
+          title: Highlight Ids
+        expiry:
+          type: integer
+          maximum: 86400
+          minimum: 900
+          title: Expiry
+          default: 86400
+      type: object
+      required:
+      - highlight_ids
+      title: BatchSignedUrlRequest
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

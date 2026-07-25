@@ -1,0 +1,680 @@
+openapi: 3.1.0
+info:
+  title: Narrative Sports Health Tasks API
+  version: 1.0.0
+servers:
+- url: https://api.narrative-sports.com
+tags:
+- name: Tasks
+paths:
+  /v1/tasks/warmup:
+    post:
+      tags:
+      - Tasks
+      summary: Warm Up Instance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WarmupRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WarmupResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      deprecated: true
+  /v1/tasks/assign-task:
+    post:
+      tags:
+      - Tasks
+      summary: Assign Task
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignTaskRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssignTaskResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      security:
+      - HTTPBearer: []
+      deprecated: true
+  /v1/tasks/create-task:
+    post:
+      tags:
+      - Tasks
+      summary: Create Task
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Idempotency-Key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTaskResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+  /v1/tasks/list-tasks:
+    get:
+      tags:
+      - Tasks
+      summary: List Tasks
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: state
+        in: query
+        required: false
+        schema:
+          enum:
+          - active
+          - all
+          - queued
+          - running
+          - ready
+          - stopping
+          - stopped
+          - error
+          - failed
+          - completed
+          - cancelled
+          type: string
+          default: active
+          title: State
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTasksResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+  /v1/tasks/{task_id}/status:
+    get:
+      tags:
+      - Tasks
+      summary: Get Task Status
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Task Id
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTaskStatusResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      deprecated: true
+  /v1/tasks/{task_id}/info:
+    get:
+      tags:
+      - Tasks
+      summary: Get Task Info
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Task Id
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTaskInfoResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+  /v1/tasks/{task_id}/kill:
+    post:
+      tags:
+      - Tasks
+      summary: Kill Task
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Task Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Body_kill_task_v1_tasks__task_id__kill_post'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KillTaskResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+  /v1/tasks/{task_id}/extend-life:
+    post:
+      tags:
+      - Tasks
+      summary: Extend Task Life
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Task Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendLifeRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendLifeResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+components:
+  schemas:
+    WarmupRequest:
+      properties:
+        sport:
+          $ref: '#/components/schemas/NarrativeSport'
+        max_life_hours:
+          type: number
+          title: Max Life Hours
+          default: 6
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      type: object
+      required:
+      - sport
+      title: WarmupRequest
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    CreateTaskRequest:
+      properties:
+        sport:
+          $ref: '#/components/schemas/NarrativeSport'
+        srt_zero_relative_smpte_timecode:
+          type: string
+          title: Srt Zero Relative Smpte Timecode
+          default: 00:00:00:00
+        framerate:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Framerate
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+        render_videos:
+          anyOf:
+          - $ref: '#/components/schemas/RenderVideoOptions'
+          - type: 'null'
+        team_names:
+          anyOf:
+          - $ref: '#/components/schemas/TeamNames'
+          - type: 'null'
+        otio:
+          anyOf:
+          - $ref: '#/components/schemas/OtioOutputConfig'
+          - type: 'null'
+        webhook_schema:
+          type: string
+          enum:
+          - otio
+          - none
+          title: Webhook Schema
+          default: none
+        wh_schema_config:
+          anyOf:
+          - $ref: '#/components/schemas/OtioOutputConfig'
+          - type: 'null'
+        max_life_hours:
+          type: number
+          title: Max Life Hours
+          default: 6
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      type: object
+      required:
+      - sport
+      title: CreateTaskRequest
+    CreateTaskResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+        srt_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Srt Url
+      type: object
+      required:
+      - success
+      title: CreateTaskResponse
+    RenderVideoOptions:
+      properties:
+        render_video:
+          type: string
+          enum:
+          - ffmpeg
+          - none
+          title: Render Video
+        retention_seconds:
+          type: integer
+          title: Retention Seconds
+          default: 86400
+      type: object
+      required:
+      - render_video
+      title: RenderVideoOptions
+    Body_kill_task_v1_tasks__task_id__kill_post:
+      properties:
+        wait_for_renders:
+          type: boolean
+          title: Wait For Renders
+          default: true
+      type: object
+      title: Body_kill_task_v1_tasks__task_id__kill_post
+    OtioOutputConfig:
+      properties:
+        target_url:
+          anyOf:
+          - type: string
+            minLength: 1
+          - type: 'null'
+          title: Target Url
+        source_start_offset:
+          type: integer
+          title: Source Start Offset
+          default: 0
+        metadata:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Metadata
+      type: object
+      title: OtioOutputConfig
+    ExtendLifeResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        task_id:
+          type: string
+          title: Task Id
+        status:
+          type: string
+          title: Status
+        max_life_hours:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Life Hours
+        previous_max_life_hours:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Previous Max Life Hours
+      type: object
+      required:
+      - success
+      - task_id
+      - status
+      title: ExtendLifeResponse
+    GetTaskInfoResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        task:
+          anyOf:
+          - $ref: '#/components/schemas/TaskInfo'
+          - type: 'null'
+      type: object
+      required:
+      - success
+      title: GetTaskInfoResponse
+    AssignTaskResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        status:
+          type: string
+          title: Status
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+        srt_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Srt Url
+      type: object
+      required:
+      - success
+      - status
+      title: AssignTaskResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    KillTaskResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        task_id:
+          type: string
+          title: Task Id
+        status:
+          type: string
+          title: Status
+        instance_terminated:
+          type: boolean
+          title: Instance Terminated
+          default: false
+      type: object
+      required:
+      - success
+      - task_id
+      - status
+      title: KillTaskResponse
+    WarmupResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        narrative_task_id:
+          type: string
+          title: Narrative Task Id
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - success
+      - narrative_task_id
+      title: WarmupResponse
+    NarrativeSport:
+      type: string
+      enum:
+      - soccer
+      - mma
+      - baseball
+      title: NarrativeSport
+    TaskInfo:
+      properties:
+        task_id:
+          type: string
+          title: Task Id
+        project_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Project Id
+        srt_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Srt Url
+        task_payload:
+          additionalProperties: true
+          type: object
+          title: Task Payload
+          default: {}
+        assigned:
+          type: boolean
+          title: Assigned
+          default: false
+        time_remaining_hours:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Time Remaining Hours
+        task_status:
+          type: string
+          title: Task Status
+        failure_reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Failure Reason
+      type: object
+      required:
+      - task_id
+      - task_status
+      title: TaskInfo
+    TaskResult:
+      type: string
+      enum:
+      - success
+      - failure
+      title: TaskResult
+    ExtendLifeRequest:
+      properties:
+        max_life_hours:
+          type: number
+          maximum: 48
+          exclusiveMinimum: 0
+          title: Max Life Hours
+      type: object
+      required:
+      - max_life_hours
+      title: ExtendLifeRequest
+    GetTaskStatusResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        task_id:
+          type: string
+          title: Task Id
+        ready:
+          type: boolean
+          title: Ready
+          default: false
+      type: object
+      required:
+      - success
+      - task_id
+      title: GetTaskStatusResponse
+    ListTasksResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        tasks:
+          items:
+            $ref: '#/components/schemas/TaskInfo'
+          type: array
+          title: Tasks
+          default: []
+      type: object
+      required:
+      - success
+      title: ListTasksResponse
+    AssignTaskRequest:
+      properties:
+        narrative_task_id:
+          type: string
+          title: Narrative Task Id
+        srt_zero_relative_smpte_timecode:
+          type: string
+          title: Srt Zero Relative Smpte Timecode
+          default: 00:00:00:00
+        framerate:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Framerate
+        webhook_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Webhook Url
+        render_videos:
+          anyOf:
+          - $ref: '#/components/schemas/RenderVideoOptions'
+          - type: 'null'
+        team_names:
+          anyOf:
+          - $ref: '#/components/schemas/TeamNames'
+          - type: 'null'
+        otio:
+          anyOf:
+          - $ref: '#/components/schemas/OtioOutputConfig'
+          - type: 'null'
+        webhook_schema:
+          anyOf:
+          - type: string
+            enum:
+            - otio
+            - none
+          - type: 'null'
+          title: Webhook Schema
+        wh_schema_config:
+          anyOf:
+          - $ref: '#/components/schemas/OtioOutputConfig'
+          - type: 'null'
+      type: object
+      required:
+      - narrative_task_id
+      title: AssignTaskRequest
+    TeamNames:
+      properties:
+        home_team_name:
+          type: string
+          title: Home Team Name
+        away_team_name:
+          type: string
+          title: Away Team Name
+      type: object
+      required:
+      - home_team_name
+      - away_team_name
+      title: TeamNames
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

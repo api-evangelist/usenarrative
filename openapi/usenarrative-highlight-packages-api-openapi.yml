@@ -1,0 +1,674 @@
+openapi: 3.1.0
+info:
+  title: Narrative Sports Health Highlight Packages API
+  version: 1.0.0
+servers:
+- url: https://api.narrative-sports.com
+tags:
+- name: Highlight Packages
+paths:
+  /v1/highlight-packages:
+    post:
+      tags:
+      - Highlight Packages
+      summary: Create Highlight Package
+      security:
+      - HTTPBearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMultiGamePackageRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateMultiGamePackageResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+    get:
+      tags:
+      - Highlight Packages
+      summary: List Highlight Packages
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 50
+          title: Limit
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cursor
+      - name: created_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Created After
+      - name: created_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Created Before
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMultiGamePackagesResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+  /v1/highlight-packages/batch:
+    get:
+      tags:
+      - Highlight Packages
+      summary: Batch Highlight Packages
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 50
+          title: Limit
+      - name: cursor
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cursor
+      - name: created_after
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Created After
+      - name: created_before
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Created Before
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Status
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchMultiGamePackagesResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+  /v1/highlight-packages/{package_id}:
+    get:
+      tags:
+      - Highlight Packages
+      summary: Get Highlight Package
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: package_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Package Id
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultiGamePackageResponse'
+          description: Success
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+    delete:
+      tags:
+      - Highlight Packages
+      summary: Delete Highlight Package
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: package_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Package Id
+      responses:
+        '204':
+          description: No Content
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+components:
+  schemas:
+    MultiGamePackageResponse:
+      properties:
+        id:
+          type: integer
+          title: Id
+        editor_project_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Editor Project Id
+        user_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: User Id
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        status:
+          type: string
+          title: Status
+        project_ids:
+          items:
+            type: integer
+          type: array
+          title: Project Ids
+        target_duration_seconds:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Target Duration Seconds
+        render_video:
+          anyOf:
+          - type: string
+            enum:
+            - ffmpeg
+            - none
+          - type: 'null'
+          title: Render Video
+        editorial_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Editorial Prompt
+        team_filter:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Team Filter
+        player_filter:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Player Filter
+        event_type_filter:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Event Type Filter
+        fight_filter:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ProjectFightFilter'
+            type: array
+          - type: 'null'
+          title: Fight Filter
+        video_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Video Url
+        otio_timeline:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Otio Timeline
+        duration:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Duration
+        num_clips:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Clips
+        selected_edit_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Selected Edit Ids
+        render_job_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Render Job Id
+        thumbnail_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Thumbnail Url
+        failure_reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Failure Reason
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+        created_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Created At
+      type: object
+      required:
+      - id
+      - status
+      - project_ids
+      title: MultiGamePackageResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ListMultiGamePackagesResponse:
+      properties:
+        packages:
+          items:
+            $ref: '#/components/schemas/MultiGamePackageListItem'
+          type: array
+          title: Packages
+        total:
+          type: integer
+          title: Total
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+      type: object
+      required:
+      - packages
+      - total
+      title: ListMultiGamePackagesResponse
+    CreateMultiGamePackageRequest:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        project_ids:
+          items:
+            type: integer
+          type: array
+          minItems: 1
+          title: Project Ids
+        target_duration_seconds:
+          type: integer
+          maximum: 3600
+          minimum: 0
+          title: Target Duration Seconds
+        editorial_prompt:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Editorial Prompt
+        team_filter:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Team Filter
+        player_filter:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Player Filter
+        event_type_filter:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Event Type Filter
+        fight_filter:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ProjectFightFilter'
+            type: array
+          - type: 'null'
+          title: Fight Filter
+        selected_fights:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ProjectFightFilter'
+            type: array
+          - type: 'null'
+          title: Selected Fights
+        selected_edit_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Selected Edit Ids
+        sport:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sport
+        recap_options:
+          anyOf:
+          - $ref: '#/components/schemas/RecapOptions'
+          - type: 'null'
+        render_video:
+          type: string
+          enum:
+          - ffmpeg
+          - none
+          title: Render Video
+          default: ffmpeg
+      additionalProperties: false
+      type: object
+      required:
+      - project_ids
+      - target_duration_seconds
+      title: CreateMultiGamePackageRequest
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    BatchMultiGamePackagesResponse:
+      properties:
+        packages:
+          items:
+            $ref: '#/components/schemas/MultiGamePackageResponse'
+          type: array
+          title: Packages
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+      type: object
+      required:
+      - packages
+      title: BatchMultiGamePackagesResponse
+    MultiGamePackageListItem:
+      properties:
+        id:
+          type: integer
+          title: Id
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        status:
+          type: string
+          title: Status
+        project_ids:
+          items:
+            type: integer
+          type: array
+          title: Project Ids
+        target_duration_seconds:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Target Duration Seconds
+        render_video:
+          anyOf:
+          - type: string
+            enum:
+            - ffmpeg
+            - none
+          - type: 'null'
+          title: Render Video
+        fight_filter:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/ProjectFightFilter'
+            type: array
+          - type: 'null'
+          title: Fight Filter
+        has_otio_timeline:
+          type: boolean
+          title: Has Otio Timeline
+        has_video:
+          type: boolean
+          title: Has Video
+        duration:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Duration
+        num_clips:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Num Clips
+        render_job_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Render Job Id
+        failure_reason:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Failure Reason
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+        created_at:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Created At
+      type: object
+      required:
+      - id
+      - status
+      - project_ids
+      - has_otio_timeline
+      - has_video
+      title: MultiGamePackageListItem
+    RecapOptions:
+      properties:
+        start_style:
+          anyOf:
+          - type: string
+            enum:
+            - none
+            - short_walkout
+            - full_walkout
+          - type: 'null'
+          title: Start Style
+        ending_style:
+          anyOf:
+          - type: string
+            enum:
+            - auto
+            - decision_or_ending
+          - type: 'null'
+          title: Ending Style
+        pacing:
+          anyOf:
+          - type: string
+            enum:
+            - tight_action
+            - balanced
+            - action_sprint
+          - type: 'null'
+          title: Pacing
+        editorial_prompt:
+          anyOf:
+          - type: string
+            maxLength: 2000
+          - type: 'null'
+          title: Editorial Prompt
+        duration_mode:
+          anyOf:
+          - type: string
+            enum:
+            - exact
+            - range
+            - uncapped
+          - type: 'null'
+          title: Duration Mode
+        target_duration_min_seconds:
+          anyOf:
+          - type: integer
+            maximum: 3600
+            minimum: 60
+          - type: 'null'
+          title: Target Duration Min Seconds
+        target_duration_max_seconds:
+          anyOf:
+          - type: integer
+            maximum: 3600
+            minimum: 60
+          - type: 'null'
+          title: Target Duration Max Seconds
+      type: object
+      title: RecapOptions
+    CreateMultiGamePackageResponse:
+      properties:
+        id:
+          type: integer
+          title: Id
+        status:
+          type: string
+          title: Status
+          default: queued
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+      type: object
+      required:
+      - id
+      title: CreateMultiGamePackageResponse
+    ProjectFightFilter:
+      properties:
+        project_id:
+          type: integer
+          title: Project Id
+        fight_numbers:
+          items:
+            type: integer
+          type: array
+          minItems: 1
+          title: Fight Numbers
+      type: object
+      required:
+      - project_id
+      - fight_numbers
+      title: ProjectFightFilter
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer
