@@ -1,0 +1,41 @@
+generated: '2026-07-21'
+method: searched
+hosts:
+- host: https://api.narrative-sports.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://www.narrative-sports.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: SPA catch-all — returns the HTML app shell for every path, not a real
+      security.txt; treated as absent
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: SPA catch-all HTML shell; treated as absent
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: SPA catch-all HTML shell; treated as absent
+  - path: /.well-known/api-catalog
+    status: 200
+    note: SPA catch-all HTML shell; treated as absent
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    note: SPA catch-all HTML shell; treated as absent
+- host: https://narrative-sports.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 307
+    note: redirects into the www SPA shell; no real security.txt
+summary: No genuine /.well-known/ discovery documents are published on any
+  Narrative Sports host. The www site is an SPA whose router returns HTTP 200
+  with the app shell for arbitrary paths; the API host returns JSON 404s.

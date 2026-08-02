@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.narrative-sports.com/api-reference/sports/introduction
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.narrative-sports.com/api-reference/sports/introduction
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No formal deprecation policy is published. Deprecated endpoints are marked
+    deprecated in the OpenAPI and docs and kept for backward compatibility (the
+    legacy warmup + assign-task flow remains supported while /v1/tasks/create-task
+    is the recommended path).
+status_page: https://status.narrative-sports.com
+sla: null
+deprecated_operations:
+- openapi/usenarrative-sports-openapi-original.json#POST /v1/tasks/warmup
+- openapi/usenarrative-sports-openapi-original.json#POST /v1/tasks/assign-task
+- openapi/usenarrative-sports-openapi-original.json#GET /v1/tasks/{task_id}/status

@@ -1,0 +1,24 @@
+{
+  "provider": "usenarrative",
+  "sources": [
+    "usenarrative-health-api-openapi.yml",
+    "usenarrative-highlight-packages-api-openapi.yml",
+    "usenarrative-highlights-api-openapi.yml",
+    "usenarrative-projects-api-openapi.yml",
+    "usenarrative-recaps-api-openapi.yml",
+    "usenarrative-tasks-api-openapi.yml"
+  ],
+  "outputs": [
+    "usenarrative-health-api-openapi.yml",
+    "usenarrative-highlight-packages-api-openapi.yml",
+    "usenarrative-highlights-api-openapi.yml",
+    "usenarrative-projects-api-openapi.yml",
+    "usenarrative-recaps-api-openapi.yml",
+    "usenarrative-tasks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

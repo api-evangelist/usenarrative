@@ -1,0 +1,58 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/usenarrative-sports-openapi-original.json + https://docs.narrative-sports.com/
+entities:
+- name: Task
+  description: 'A live-stream processing job. Creating a task launches a worker and
+    returns a per-task SRT ingest URL. Statuses: queued, running, ready, completed,
+    error, failed, stopped.'
+  schemas: [CreateTaskRequest, CreateTaskResponse, TaskInfo, TaskResult, GetTaskInfoResponse, ListTasksResponse]
+- name: Project
+  description: The game/event generated from a task's processed stream; the anchor
+    for highlights, recaps, and package options.
+  schemas: [HighlightOptionsResponse, ProjectFightFilter]
+- name: Highlight
+  description: An AI-detected key moment clip with metadata (event type, and for
+    MMA fight_number/round_number/fight_name), rendered video and OTIO edit data.
+  schemas: [HighlightMetadata, GetHighlightResponse, ListHighlightsResponse, SignedUrlResponse, BatchSignedUrlRequest, BatchSignedUrlResponse]
+- name: HighlightPackage
+  description: A multi-game highlight package assembled from multiple projects.
+  schemas: [CreateMultiGamePackageRequest, CreateMultiGamePackageResponse, MultiGamePackageResponse, MultiGamePackageListItem, ListMultiGamePackagesResponse, BatchMultiGamePackagesResponse]
+- name: Recap
+  description: A single-game recap generated from a project's OTIO-ready highlights,
+    with target duration and event-type steering.
+  schemas: [CreatePublicRecapRequest, CreatePublicRecapResponse, PublicRecapResponse, ListPublicRecapsResponse, BatchPublicRecapsResponse, RecapOptions]
+relationships:
+- from: Task
+  to: Project
+  kind: has_one
+  via: task.project_id
+  evidence: GET /v1/tasks/{task_id}/info returns task.project_id (null until the
+    task produces project data)
+- from: Project
+  to: Highlight
+  kind: has_many
+  via: project highlight options / highlight metadata
+  evidence: GET /v1/projects/{project_id}/highlight-options discovers a project's
+    highlights and event types
+- from: Highlight
+  to: Task
+  kind: belongs_to
+  via: task_id
+  evidence: GET /v1/highlights supports task_id filtering
+- from: HighlightPackage
+  to: Project
+  kind: has_many
+  via: project ids in CreateMultiGamePackageRequest
+  evidence: POST /v1/highlight-packages creates a multi-game package from multiple
+    projects
+- from: Recap
+  to: Project
+  kind: belongs_to
+  via: project_id
+  evidence: POST /v1/recaps creates a recap from a project ID; recap EDL is merged
+    from that project's highlight edits
+id_conventions:
+  api_key_prefix: sk-nr-
+  notes: Resource identifiers (task_id, highlight_id, package_id, recap_id,
+    project_id) are opaque strings; no documented public id-prefix scheme.

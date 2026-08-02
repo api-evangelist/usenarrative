@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.narrative-sports.com/api-reference/sports/introduction
+format: fastapi-detail
+envelope: '{"detail": "<message>"}'
+notes: Errors are not RFC 9457 problem+json; the API returns a FastAPI-style
+  detail envelope. Validation failures return HTTP 422 with an HTTPValidationError
+  body (detail[] of loc/msg/type) as declared in the OpenAPI.
+problems:
+- status: 400
+  title: Bad request
+  detail_example: Error message describing the invalid request
+  remediation: Correct the request body or parameters and retry.
+- status: 401
+  title: Unauthorized
+  detail_example: Missing or invalid API key
+  remediation: 'Send a valid API key as "Authorization: Bearer sk-nr-..." (all
+    endpoints except /v1/health require one).'
+- status: 403
+  title: No usage limit configured
+  detail_example: Your account is not allowed to create tasks. Contact
+    founders@narrative-sports.com to get started.
+  remediation: Returned by task-creation endpoints (/v1/tasks/create-task and the
+    deprecated /v1/tasks/warmup) when the account has no concurrent task limit
+    configured; contact the provider to enable task creation.
+- status: 422
+  title: Validation error
+  schema: HTTPValidationError
+  source_operation: openapi/usenarrative-sports-openapi-original.json#components/schemas/HTTPValidationError
+  remediation: Fix the fields named in detail[].loc; each entry carries msg and
+    type explaining the failure.
+- status: 429
+  title: Concurrent task limit reached
+  detail_example: 'Concurrent task limit reached: 2/2. If you believe this is in
+    error, or to request a rate limit increase, contact
+    founders@narrative-sports.com.'
+  remediation: Kill a running task or wait for one to finish before creating a
+    new one; contact the provider for a limit increase.
+- status: 500
+  title: Server error
+  detail_example: Failed to start worker due to high traffic. Please try again later.
+  remediation: Transient infrastructure issue; retry after a short delay.

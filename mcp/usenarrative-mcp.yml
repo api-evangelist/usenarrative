@@ -1,0 +1,76 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: openapi/usenarrative-sports-openapi-original.json
+notes: No official hosted MCP server was found for Narrative Sports (no MCP
+  references in docs.narrative-sports.com, no registry listing). Candidate tool
+  list derived from the published OpenAPI operations. The spec ships no
+  operationIds, so tools are named from method + path.
+server:
+  name: usenarrative
+  transport: http
+  url: null
+tools:
+- name: health
+  description: Check API availability
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/health
+- name: create_task
+  description: Create a task, launch a worker, and receive the SRT ingest URL in one call
+  source_operation: openapi/usenarrative-sports-openapi-original.json#POST /v1/tasks/create-task
+- name: list_tasks
+  description: List all tasks with status, SRT URLs, and time remaining
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/tasks/list-tasks
+- name: get_task_info
+  description: Get detailed information about a single task
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/tasks/{task_id}/info
+- name: extend_task_life
+  description: Increase the maximum lifetime of an active task
+  source_operation: openapi/usenarrative-sports-openapi-original.json#POST /v1/tasks/{task_id}/extend-life
+- name: kill_task
+  description: Stop a task gracefully (default) or immediately
+  source_operation: openapi/usenarrative-sports-openapi-original.json#POST /v1/tasks/{task_id}/kill
+- name: list_highlights
+  description: List all highlights for the authenticated customer with optional filtering
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/highlights
+- name: get_highlight
+  description: Get metadata for a single highlight by ID
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/highlights/{highlight_id}
+- name: get_signed_url
+  description: Generate a time-limited signed URL for downloading a rendered highlight video
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/highlights/{highlight_id}/signed-url
+- name: batch_signed_urls
+  description: Generate time-limited signed URLs for multiple highlight videos in a single request
+  source_operation: openapi/usenarrative-sports-openapi-original.json#POST /v1/highlights/batch-signed-urls
+- name: create_highlight_package
+  description: Create a multi-game highlight package from multiple projects
+  source_operation: openapi/usenarrative-sports-openapi-original.json#POST /v1/highlight-packages
+- name: list_highlight_packages
+  description: List all highlight packages
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/highlight-packages
+- name: batch_highlight_packages
+  description: Retrieve paginated package detail with ETag support
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/highlight-packages/batch
+- name: get_highlight_package
+  description: Get details of a highlight package
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/highlight-packages/{package_id}
+- name: delete_highlight_package
+  description: Delete a highlight package
+  source_operation: openapi/usenarrative-sports-openapi-original.json#DELETE /v1/highlight-packages/{package_id}
+- name: create_recap
+  description: Create a single-game recap from a project
+  source_operation: openapi/usenarrative-sports-openapi-original.json#POST /v1/recaps
+- name: list_recaps
+  description: List all game recaps
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/recaps
+- name: batch_recaps
+  description: Retrieve paginated recap detail with ETag support
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/recaps/batch
+- name: get_recap
+  description: Get details of a game recap
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/recaps/{recap_id}
+- name: delete_recap
+  description: Delete a game recap
+  source_operation: openapi/usenarrative-sports-openapi-original.json#DELETE /v1/recaps/{recap_id}
+- name: get_project_highlight_options
+  description: Discover package creation options for a project
+  source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/projects/{project_id}/highlight-options

@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/usenarrative-sports-openapi-original.json + https://docs.narrative-sports.com/
+standards:
+- id: openapi-3.1
+  conforms: true
+  evidence: published spec at https://docs.narrative-sports.com/openapi.json declares
+    openapi 3.1.0
+- id: http-bearer-auth
+  conforms: true
+  evidence: components.securitySchemes.HTTPBearer (type http, scheme bearer); API
+    keys passed as Bearer tokens per https://docs.narrative-sports.com/authentication
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme in spec; docs describe static API keys only
+- id: oidc
+  conforms: false
+  evidence: no openIdConnect scheme; /.well-known/openid-configuration returns 404
+    on api.narrative-sports.com
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use FastAPI-style {"detail"} envelope, not application/problem+json
+- id: srt
+  conforms: true
+  evidence: live ingest is SRT (Secure Reliable Transport) per docs; per-task srt_url
+    with encryption passphrase
+- id: otio
+  conforms: true
+  evidence: highlight edit data is emitted as OpenTimelineIO (OTIO) timelines per
+    https://docs.narrative-sports.com/concepts/otio-format
+- id: smpte-timecode
+  conforms: true
+  evidence: create-task accepts srt_zero_relative_smpte_timecode SMPTE timecode
+    override
+- id: etag-conditional-requests
+  conforms: true
+  evidence: batch package/recap endpoints document ETag support
+- id: idempotency
+  conforms: false
+  evidence: no idempotency-key contract documented
+- id: json-api
+  conforms: false
+  evidence: plain JSON responses, no JSON:API media type

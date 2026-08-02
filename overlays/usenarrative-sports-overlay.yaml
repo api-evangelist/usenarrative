@@ -1,0 +1,79 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Narrative Sports API
+  version: 1.0.0
+x-generated: '2026-07-21'
+x-method: generated
+extends: openapi/usenarrative-sports-openapi-original.json
+actions:
+- target: $.info
+  update:
+    description: AI-powered sports video analysis and highlight generation. Create
+      a task to receive a per-task SRT ingest URL, stream live soccer or MMA video
+      in real time, and retrieve AI-detected highlight clips, single-game recaps,
+      and multi-game highlight packages with OTIO edit data.
+    contact:
+      name: Narrative Sports
+      email: founders@narrative-sports.com
+      url: https://docs.narrative-sports.com/
+    x-apievangelist:
+      provider: usenarrative
+      docs: https://docs.narrative-sports.com/
+      dashboard: https://app.narrative-sports.com/api-dashboard
+      status: https://status.narrative-sports.com/
+- target: $.info
+  update:
+    x-apievangelist-notes:
+    - The upstream spec ships no operationIds or tags; suggested operationIds are
+      added per operation below so tooling (SDK generators, MCP forges, Arazzo)
+      can address operations stably.
+    - Error responses use a FastAPI {"detail"} envelope rather than RFC 9457
+      problem+json.
+- target: $.paths['/v1/health'].get
+  update: {operationId: health, tags: [Platform]}
+- target: $.paths['/v1/tasks/create-task'].post
+  update: {operationId: createTask, tags: [Tasks]}
+- target: $.paths['/v1/tasks/list-tasks'].get
+  update: {operationId: listTasks, tags: [Tasks]}
+- target: $.paths['/v1/tasks/{task_id}/info'].get
+  update: {operationId: getTaskInfo, tags: [Tasks]}
+- target: $.paths['/v1/tasks/{task_id}/status'].get
+  update: {operationId: getTaskStatus, tags: [Tasks]}
+- target: $.paths['/v1/tasks/{task_id}/kill'].post
+  update: {operationId: killTask, tags: [Tasks]}
+- target: $.paths['/v1/tasks/{task_id}/extend-life'].post
+  update: {operationId: extendTaskLife, tags: [Tasks]}
+- target: $.paths['/v1/tasks/warmup'].post
+  update: {operationId: warmupInstance, tags: [Tasks]}
+- target: $.paths['/v1/tasks/assign-task'].post
+  update: {operationId: assignTask, tags: [Tasks]}
+- target: $.paths['/v1/highlights'].get
+  update: {operationId: listHighlights, tags: [Highlights]}
+- target: $.paths['/v1/highlights/{highlight_id}'].get
+  update: {operationId: getHighlight, tags: [Highlights]}
+- target: $.paths['/v1/highlights/{highlight_id}/signed-url'].get
+  update: {operationId: getSignedUrl, tags: [Highlights]}
+- target: $.paths['/v1/highlights/batch-signed-urls'].post
+  update: {operationId: batchSignedUrls, tags: [Highlights]}
+- target: $.paths['/v1/highlight-packages'].post
+  update: {operationId: createHighlightPackage, tags: [Highlight Packages]}
+- target: $.paths['/v1/highlight-packages'].get
+  update: {operationId: listHighlightPackages, tags: [Highlight Packages]}
+- target: $.paths['/v1/highlight-packages/batch'].get
+  update: {operationId: batchHighlightPackages, tags: [Highlight Packages]}
+- target: $.paths['/v1/highlight-packages/{package_id}'].get
+  update: {operationId: getHighlightPackage, tags: [Highlight Packages]}
+- target: $.paths['/v1/highlight-packages/{package_id}'].delete
+  update: {operationId: deleteHighlightPackage, tags: [Highlight Packages]}
+- target: $.paths['/v1/recaps'].post
+  update: {operationId: createRecap, tags: [Recaps]}
+- target: $.paths['/v1/recaps'].get
+  update: {operationId: listRecaps, tags: [Recaps]}
+- target: $.paths['/v1/recaps/batch'].get
+  update: {operationId: batchRecaps, tags: [Recaps]}
+- target: $.paths['/v1/recaps/{recap_id}'].get
+  update: {operationId: getRecap, tags: [Recaps]}
+- target: $.paths['/v1/recaps/{recap_id}'].delete
+  update: {operationId: deleteRecap, tags: [Recaps]}
+- target: $.paths['/v1/projects/{project_id}/highlight-options'].get
+  update: {operationId: getProjectHighlightOptions, tags: [Projects]}

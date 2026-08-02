@@ -1,0 +1,57 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.narrative-sports.com/api-reference/sports/introduction
+provider: Narrative Sports (usenarrative)
+base_url: https://api.narrative-sports.com/v1
+authentication:
+  style: api-key-bearer
+  header: 'Authorization: Bearer <API_KEY>'
+  key_format: sk-nr-<32 hex characters>
+  dashboard: https://app.narrative-sports.com/api-dashboard
+  docs: https://docs.narrative-sports.com/authentication
+  notes: All endpoints except /v1/health require a valid API key passed as a Bearer
+    token. Keys are displayed truncated (sk-nr-a1b2****) in the dashboard.
+versioning:
+  scheme: uri-path
+  current: v1
+  notes: All endpoints are prefixed /v1. Deprecated warmup/assign-task flow is kept
+    for backward compatibility; new integrations should use /v1/tasks/create-task.
+error_envelope:
+  shape: '{"detail": "<message>"}'
+  format: fastapi-detail
+  validation_errors: HTTP 422 with HTTPValidationError body (detail[] of loc/msg/type)
+  problem_json: false
+  docs: https://docs.narrative-sports.com/api-reference/sports/introduction
+rate_limits:
+  style: concurrent-task-limit
+  signal: 'HTTP 429 with detail message (e.g. "Concurrent task limit reached: 2/2")'
+  headers: none documented
+  increase: contact founders@narrative-sports.com
+pagination:
+  style: batch-endpoints
+  notes: Batch endpoints (/v1/highlight-packages/batch, /v1/recaps/batch) return
+    paginated detail with ETag support; list endpoints support filtering (e.g.
+    state on list-tasks, task_id on highlights).
+  conditional_requests: ETag supported on batch package/recap retrieval
+idempotency:
+  supported: false
+  notes: No idempotency-key header or replay-safety contract is documented.
+request_tracing:
+  header: none documented
+media_ingest:
+  protocol: SRT (Secure Reliable Transport)
+  realtime: Streams must be sent at 1x real-time speed; per-task srt_url embeds
+    host and encryption passphrase and must be used exactly as returned.
+  minimum_bitrate: 3000 kb/s source bitrate for portrait cropping
+  video_codec: H.264/AVC over MPEG-TS (AV1/VP9 must be transcoded)
+output_formats:
+  video: rendered MP4 clips in 16:9 and 9:16 (plus optional 1:1 for MMA)
+  timeline: OTIO (OpenTimelineIO) edit data with portrait crop effects
+  timecode: SMPTE timecode overrides supported (srt_zero_relative_smpte_timecode)
+task_statuses: [queued, running, ready, completed, error, failed, stopped]
+retry_guidance: 500 responses indicate transient infrastructure issues; retry
+  after a short delay. 429 requires killing a task or waiting for completion.
+cross_links:
+  errors: errors/usenarrative-problem-types.yml
+  lifecycle: lifecycle/usenarrative-lifecycle.yml
+  authentication: authentication/usenarrative-authentication.yml

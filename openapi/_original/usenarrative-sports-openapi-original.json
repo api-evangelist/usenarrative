@@ -1,0 +1,3978 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Narrative Sports API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Health",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/v1/highlights": {
+      "get": {
+        "tags": [
+          "Highlights"
+        ],
+        "summary": "List Highlights",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListHighlightsResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/highlights/{highlight_id}": {
+      "get": {
+        "tags": [
+          "Highlights"
+        ],
+        "summary": "Get Highlight",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "highlight_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Highlight Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetHighlightResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/highlights/{highlight_id}/signed-url": {
+      "get": {
+        "tags": [
+          "Highlights"
+        ],
+        "summary": "Get Signed URL",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "highlight_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Highlight Id"
+            }
+          },
+          {
+            "name": "expiry",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 86400,
+              "minimum": 900,
+              "default": 86400,
+              "title": "Expiry"
+            }
+          },
+          {
+            "name": "download",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Download"
+            }
+          },
+          {
+            "name": "variant",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Variant"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignedUrlResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/highlights/batch-signed-urls": {
+      "post": {
+        "tags": [
+          "Highlights"
+        ],
+        "summary": "Batch Signed URLs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchSignedUrlRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchSignedUrlResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/tasks/warmup": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Warm Up Instance",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WarmupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WarmupResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "deprecated": true
+      }
+    },
+    "/v1/tasks/assign-task": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Assign Task",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignTaskRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssignTaskResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "deprecated": true
+      }
+    },
+    "/v1/tasks/create-task": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Create Task",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Idempotency-Key"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTaskResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/tasks/list-tasks": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "List Tasks",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "active",
+                "all",
+                "queued",
+                "running",
+                "ready",
+                "stopping",
+                "stopped",
+                "error",
+                "failed",
+                "completed",
+                "cancelled"
+              ],
+              "type": "string",
+              "default": "active",
+              "title": "State"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListTasksResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/tasks/{task_id}/status": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get Task Status",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTaskStatusResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/v1/tasks/{task_id}/info": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get Task Info",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTaskInfoResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/tasks/{task_id}/kill": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Kill Task",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_kill_task_v1_tasks__task_id__kill_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KillTaskResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/tasks/{task_id}/extend-life": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Extend Task Life",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "task_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Task Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExtendLifeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExtendLifeResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/highlight-packages": {
+      "post": {
+        "tags": [
+          "Highlight Packages"
+        ],
+        "summary": "Create Highlight Package",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateMultiGamePackageRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateMultiGamePackageResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Highlight Packages"
+        ],
+        "summary": "List Highlight Packages",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "created_after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Created After"
+            }
+          },
+          {
+            "name": "created_before",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Created Before"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListMultiGamePackagesResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/highlight-packages/batch": {
+      "get": {
+        "tags": [
+          "Highlight Packages"
+        ],
+        "summary": "Batch Highlight Packages",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "created_after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Created After"
+            }
+          },
+          {
+            "name": "created_before",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Created Before"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchMultiGamePackagesResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/highlight-packages/{package_id}": {
+      "get": {
+        "tags": [
+          "Highlight Packages"
+        ],
+        "summary": "Get Highlight Package",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "package_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Package Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultiGamePackageResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Highlight Packages"
+        ],
+        "summary": "Delete Highlight Package",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "package_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Package Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/recaps": {
+      "post": {
+        "tags": [
+          "Recaps"
+        ],
+        "summary": "Create Recap",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePublicRecapRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePublicRecapResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Recaps"
+        ],
+        "summary": "List Recaps",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "maximum": 100,
+                  "minimum": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListPublicRecapsResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/recaps/batch": {
+      "get": {
+        "tags": [
+          "Recaps"
+        ],
+        "summary": "Batch Recaps",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "created_after",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Created After"
+            }
+          },
+          {
+            "name": "created_before",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Created Before"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchPublicRecapsResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/recaps/{recap_id}": {
+      "get": {
+        "tags": [
+          "Recaps"
+        ],
+        "summary": "Get Recap",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recap_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Recap Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicRecapResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Recaps"
+        ],
+        "summary": "Delete Recap",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "recap_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Recap Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    },
+    "/v1/projects/{project_id}/highlight-options": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Get Project Highlight Options",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Project Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HighlightOptionsResponse"
+                }
+              }
+            },
+            "description": "Success"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AssignTaskRequest": {
+        "properties": {
+          "narrative_task_id": {
+            "type": "string",
+            "title": "Narrative Task Id"
+          },
+          "srt_zero_relative_smpte_timecode": {
+            "type": "string",
+            "title": "Srt Zero Relative Smpte Timecode",
+            "default": "00:00:00:00"
+          },
+          "framerate": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Framerate"
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url"
+          },
+          "render_videos": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RenderVideoOptions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "team_names": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TeamNames"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "otio": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OtioOutputConfig"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "webhook_schema": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "otio",
+                  "none"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Schema"
+          },
+          "wh_schema_config": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OtioOutputConfig"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "narrative_task_id"
+        ],
+        "title": "AssignTaskRequest"
+      },
+      "AssignTaskResponse": {
+        "properties": {
+          "success": {
+            "$ref": "#/components/schemas/TaskResult"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          },
+          "srt_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Srt Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "status"
+        ],
+        "title": "AssignTaskResponse"
+      },
+      "BatchMultiGamePackagesResponse": {
+        "properties": {
+          "packages": {
+            "items": {
+              "$ref": "#/components/schemas/MultiGamePackageResponse"
+            },
+            "type": "array",
+            "title": "Packages"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "packages"
+        ],
+        "title": "BatchMultiGamePackagesResponse"
+      },
+      "BatchPublicRecapsResponse": {
+        "properties": {
+          "recaps": {
+            "items": {
+              "$ref": "#/components/schemas/PublicRecapResponse"
+            },
+            "type": "array",
+            "title": "Recaps"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recaps"
+        ],
+        "title": "BatchPublicRecapsResponse"
+      },
+      "BatchSignedUrlRequest": {
+        "properties": {
+          "highlight_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Highlight Ids"
+          },
+          "expiry": {
+            "type": "integer",
+            "maximum": 86400,
+            "minimum": 900,
+            "title": "Expiry",
+            "default": 86400
+          }
+        },
+        "type": "object",
+        "required": [
+          "highlight_ids"
+        ],
+        "title": "BatchSignedUrlRequest"
+      },
+      "BatchSignedUrlResponse": {
+        "properties": {
+          "signed_urls": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Signed Urls"
+          },
+          "signed_poster_urls": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Signed Poster Urls",
+            "default": {}
+          },
+          "signed_portrait_urls": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Signed Portrait Urls",
+            "default": {}
+          },
+          "signed_portrait_poster_urls": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Signed Portrait Poster Urls",
+            "default": {}
+          },
+          "signed_square_urls": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Signed Square Urls",
+            "default": {}
+          },
+          "signed_square_poster_urls": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Signed Square Poster Urls",
+            "default": {}
+          },
+          "expires_in_seconds": {
+            "type": "integer",
+            "title": "Expires In Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "signed_urls",
+          "expires_in_seconds"
+        ],
+        "title": "BatchSignedUrlResponse"
+      },
+      "Body_kill_task_v1_tasks__task_id__kill_post": {
+        "properties": {
+          "wait_for_renders": {
+            "type": "boolean",
+            "title": "Wait For Renders",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "Body_kill_task_v1_tasks__task_id__kill_post"
+      },
+      "CountOption": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "title": "Value"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "otio_ready_count": {
+            "type": "integer",
+            "title": "Otio Ready Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value",
+          "count",
+          "otio_ready_count"
+        ],
+        "title": "CountOption"
+      },
+      "CreateMultiGamePackageRequest": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "project_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Project Ids"
+          },
+          "target_duration_seconds": {
+            "type": "integer",
+            "maximum": 3600,
+            "minimum": 0,
+            "title": "Target Duration Seconds"
+          },
+          "editorial_prompt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Editorial Prompt"
+          },
+          "team_filter": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Filter"
+          },
+          "player_filter": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Filter"
+          },
+          "event_type_filter": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Type Filter"
+          },
+          "fight_filter": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ProjectFightFilter"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fight Filter"
+          },
+          "selected_fights": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ProjectFightFilter"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Fights"
+          },
+          "selected_edit_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Edit Ids"
+          },
+          "sport": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sport"
+          },
+          "recap_options": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RecapOptions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "render_video": {
+            "type": "string",
+            "enum": [
+              "ffmpeg",
+              "none"
+            ],
+            "title": "Render Video",
+            "default": "ffmpeg"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "project_ids",
+          "target_duration_seconds"
+        ],
+        "title": "CreateMultiGamePackageRequest"
+      },
+      "CreateMultiGamePackageResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "queued"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "CreateMultiGamePackageResponse"
+      },
+      "CreatePublicRecapRequest": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "project_id": {
+            "type": "integer",
+            "title": "Project Id"
+          },
+          "target_duration_seconds": {
+            "type": "integer",
+            "maximum": 3600,
+            "minimum": 0,
+            "title": "Target Duration Seconds"
+          },
+          "exclude_event_types": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exclude Event Types"
+          },
+          "selected_edit_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Edit Ids"
+          },
+          "recap_mode": {
+            "type": "string",
+            "title": "Recap Mode",
+            "default": "custom"
+          },
+          "fight_ceremony_config": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/FightCeremonyConfig"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fight Ceremony Config"
+          },
+          "render_video": {
+            "type": "string",
+            "enum": [
+              "ffmpeg",
+              "none"
+            ],
+            "title": "Render Video",
+            "default": "ffmpeg"
+          },
+          "sport": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sport"
+          },
+          "recap_options": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RecapOptions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "project_id",
+          "target_duration_seconds"
+        ],
+        "title": "CreatePublicRecapRequest"
+      },
+      "CreatePublicRecapResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "queued"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "CreatePublicRecapResponse"
+      },
+      "CreateTaskRequest": {
+        "properties": {
+          "sport": {
+            "$ref": "#/components/schemas/NarrativeSport"
+          },
+          "srt_zero_relative_smpte_timecode": {
+            "type": "string",
+            "title": "Srt Zero Relative Smpte Timecode",
+            "default": "00:00:00:00"
+          },
+          "framerate": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Framerate"
+          },
+          "webhook_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Webhook Url"
+          },
+          "render_videos": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RenderVideoOptions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "team_names": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TeamNames"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "otio": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OtioOutputConfig"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "webhook_schema": {
+            "type": "string",
+            "enum": [
+              "otio",
+              "none"
+            ],
+            "title": "Webhook Schema",
+            "default": "none"
+          },
+          "wh_schema_config": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OtioOutputConfig"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "max_life_hours": {
+            "type": "number",
+            "title": "Max Life Hours",
+            "default": 6
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sport"
+        ],
+        "title": "CreateTaskRequest"
+      },
+      "CreateTaskResponse": {
+        "properties": {
+          "success": {
+            "$ref": "#/components/schemas/TaskResult"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          },
+          "srt_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Srt Url"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success"
+        ],
+        "title": "CreateTaskResponse"
+      },
+      "ExtendLifeRequest": {
+        "properties": {
+          "max_life_hours": {
+            "type": "number",
+            "maximum": 48,
+            "exclusiveMinimum": 0,
+            "title": "Max Life Hours"
+          }
+        },
+        "type": "object",
+        "required": [
+          "max_life_hours"
+        ],
+        "title": "ExtendLifeRequest"
+      },
+      "ExtendLifeResponse": {
+        "properties": {
+          "success": {
+            "$ref": "#/components/schemas/TaskResult"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "max_life_hours": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Life Hours"
+          },
+          "previous_max_life_hours": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Previous Max Life Hours"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "task_id",
+          "status"
+        ],
+        "title": "ExtendLifeResponse"
+      },
+      "FightCeremonyConfig": {
+        "properties": {
+          "fight_number": {
+            "type": "integer",
+            "title": "Fight Number"
+          },
+          "include_walkon": {
+            "type": "boolean",
+            "title": "Include Walkon",
+            "default": false
+          },
+          "include_decision": {
+            "type": "boolean",
+            "title": "Include Decision",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "fight_number"
+        ],
+        "title": "FightCeremonyConfig"
+      },
+      "FightOption": {
+        "properties": {
+          "fight_number": {
+            "type": "integer",
+            "title": "Fight Number"
+          },
+          "fight_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fight Name"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "otio_ready_count": {
+            "type": "integer",
+            "title": "Otio Ready Count"
+          },
+          "round_numbers": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Round Numbers"
+          },
+          "highlight_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Highlight Ids"
+          }
+        },
+        "type": "object",
+        "required": [
+          "fight_number",
+          "count",
+          "otio_ready_count",
+          "round_numbers",
+          "highlight_ids"
+        ],
+        "title": "FightOption"
+      },
+      "GetHighlightResponse": {
+        "properties": {
+          "highlight": {
+            "$ref": "#/components/schemas/HighlightMetadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "highlight"
+        ],
+        "title": "GetHighlightResponse"
+      },
+      "GetTaskInfoResponse": {
+        "properties": {
+          "success": {
+            "$ref": "#/components/schemas/TaskResult"
+          },
+          "task": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TaskInfo"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "success"
+        ],
+        "title": "GetTaskInfoResponse"
+      },
+      "GetTaskStatusResponse": {
+        "properties": {
+          "success": {
+            "$ref": "#/components/schemas/TaskResult"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "ready": {
+            "type": "boolean",
+            "title": "Ready",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "task_id"
+        ],
+        "title": "GetTaskStatusResponse"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HighlightMetadata": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "event_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Type"
+          },
+          "custom_category_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Category Name"
+          },
+          "event_description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Description"
+          },
+          "event_timestamp_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Timestamp Seconds"
+          },
+          "edit_length": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Edit Length"
+          },
+          "inclusion_reasoning": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inclusion Reasoning"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "otio_edit": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Otio Edit"
+          },
+          "target_team": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Team"
+          },
+          "target_players": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Players"
+          },
+          "otio_crop": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Otio Crop"
+          },
+          "source_archive": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Archive"
+          },
+          "source_window": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Window"
+          },
+          "render_windows": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Render Windows"
+          },
+          "editor_state": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Editor State"
+          },
+          "editor_revision": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Editor Revision"
+          },
+          "editor_project_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Editor Project Id"
+          },
+          "fight_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fight Number"
+          },
+          "round_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Round Number"
+          },
+          "fight_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fight Name"
+          },
+          "event_metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Metadata"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "HighlightMetadata"
+      },
+      "HighlightOption": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "event_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Type"
+          },
+          "custom_category_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Custom Category Name"
+          },
+          "event_description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Description"
+          },
+          "event_timestamp_seconds": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Timestamp Seconds"
+          },
+          "edit_length": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Edit Length"
+          },
+          "target_team": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Team"
+          },
+          "target_players": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Players"
+          },
+          "fight_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fight Number"
+          },
+          "round_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Round Number"
+          },
+          "fight_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fight Name"
+          },
+          "otio_ready": {
+            "type": "boolean",
+            "title": "Otio Ready"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "otio_ready"
+        ],
+        "title": "HighlightOption"
+      },
+      "HighlightOptionsResponse": {
+        "properties": {
+          "project_id": {
+            "type": "integer",
+            "title": "Project Id"
+          },
+          "project_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Project Name"
+          },
+          "event_types": {
+            "items": {
+              "$ref": "#/components/schemas/CountOption"
+            },
+            "type": "array",
+            "title": "Event Types"
+          },
+          "teams": {
+            "items": {
+              "$ref": "#/components/schemas/CountOption"
+            },
+            "type": "array",
+            "title": "Teams"
+          },
+          "players": {
+            "items": {
+              "$ref": "#/components/schemas/CountOption"
+            },
+            "type": "array",
+            "title": "Players"
+          },
+          "fights": {
+            "items": {
+              "$ref": "#/components/schemas/FightOption"
+            },
+            "type": "array",
+            "title": "Fights"
+          },
+          "highlights": {
+            "items": {
+              "$ref": "#/components/schemas/HighlightOption"
+            },
+            "type": "array",
+            "title": "Highlights"
+          },
+          "total_highlights": {
+            "type": "integer",
+            "title": "Total Highlights"
+          },
+          "otio_ready_highlights": {
+            "type": "integer",
+            "title": "Otio Ready Highlights"
+          }
+        },
+        "type": "object",
+        "required": [
+          "project_id",
+          "event_types",
+          "teams",
+          "players",
+          "fights",
+          "highlights",
+          "total_highlights",
+          "otio_ready_highlights"
+        ],
+        "title": "HighlightOptionsResponse"
+      },
+      "KillTaskResponse": {
+        "properties": {
+          "success": {
+            "$ref": "#/components/schemas/TaskResult"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "instance_terminated": {
+            "type": "boolean",
+            "title": "Instance Terminated",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "task_id",
+          "status"
+        ],
+        "title": "KillTaskResponse"
+      },
+      "ListHighlightsResponse": {
+        "properties": {
+          "highlights": {
+            "items": {
+              "$ref": "#/components/schemas/HighlightMetadata"
+            },
+            "type": "array",
+            "title": "Highlights"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "highlights",
+          "total"
+        ],
+        "title": "ListHighlightsResponse"
+      },
+      "ListMultiGamePackagesResponse": {
+        "properties": {
+          "packages": {
+            "items": {
+              "$ref": "#/components/schemas/MultiGamePackageListItem"
+            },
+            "type": "array",
+            "title": "Packages"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "packages",
+          "total"
+        ],
+        "title": "ListMultiGamePackagesResponse"
+      },
+      "ListPublicRecapsResponse": {
+        "properties": {
+          "recaps": {
+            "items": {
+              "$ref": "#/components/schemas/PublicRecapResponse"
+            },
+            "type": "array",
+            "title": "Recaps"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "type": "object",
+        "required": [
+          "recaps",
+          "total"
+        ],
+        "title": "ListPublicRecapsResponse"
+      },
+      "ListTasksResponse": {
+        "properties": {
+          "success": {
+            "$ref": "#/components/schemas/TaskResult"
+          },
+          "tasks": {
+            "items": {
+              "$ref": "#/components/schemas/TaskInfo"
+            },
+            "type": "array",
+            "title": "Tasks",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "success"
+        ],
+        "title": "ListTasksResponse"
+      },
+      "MultiGamePackageListItem": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "project_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Project Ids"
+          },
+          "target_duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Duration Seconds"
+          },
+          "render_video": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "ffmpeg",
+                  "none"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Render Video"
+          },
+          "fight_filter": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ProjectFightFilter"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fight Filter"
+          },
+          "has_otio_timeline": {
+            "type": "boolean",
+            "title": "Has Otio Timeline"
+          },
+          "has_video": {
+            "type": "boolean",
+            "title": "Has Video"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "num_clips": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Num Clips"
+          },
+          "render_job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Render Job Id"
+          },
+          "failure_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Reason"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "project_ids",
+          "has_otio_timeline",
+          "has_video"
+        ],
+        "title": "MultiGamePackageListItem"
+      },
+      "MultiGamePackageResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "editor_project_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Editor Project Id"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "project_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Project Ids"
+          },
+          "target_duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Duration Seconds"
+          },
+          "render_video": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "ffmpeg",
+                  "none"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Render Video"
+          },
+          "editorial_prompt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Editorial Prompt"
+          },
+          "team_filter": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Team Filter"
+          },
+          "player_filter": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Player Filter"
+          },
+          "event_type_filter": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Event Type Filter"
+          },
+          "fight_filter": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/ProjectFightFilter"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fight Filter"
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          },
+          "otio_timeline": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Otio Timeline"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "num_clips": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Num Clips"
+          },
+          "selected_edit_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Edit Ids"
+          },
+          "render_job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Render Job Id"
+          },
+          "thumbnail_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Url"
+          },
+          "failure_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Reason"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "project_ids"
+        ],
+        "title": "MultiGamePackageResponse"
+      },
+      "NarrativeSport": {
+        "type": "string",
+        "enum": [
+          "soccer",
+          "mma",
+          "baseball"
+        ],
+        "title": "NarrativeSport"
+      },
+      "OtioOutputConfig": {
+        "properties": {
+          "target_url": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Url"
+          },
+          "source_start_offset": {
+            "type": "integer",
+            "title": "Source Start Offset",
+            "default": 0
+          },
+          "metadata": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metadata"
+          }
+        },
+        "type": "object",
+        "title": "OtioOutputConfig"
+      },
+      "ProjectFightFilter": {
+        "properties": {
+          "project_id": {
+            "type": "integer",
+            "title": "Project Id"
+          },
+          "fight_numbers": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "minItems": 1,
+            "title": "Fight Numbers"
+          }
+        },
+        "type": "object",
+        "required": [
+          "project_id",
+          "fight_numbers"
+        ],
+        "title": "ProjectFightFilter"
+      },
+      "PublicRecapResponse": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "editor_project_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Editor Project Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "project_id": {
+            "type": "integer",
+            "title": "Project Id"
+          },
+          "target_duration_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Duration Seconds"
+          },
+          "render_video": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Render Video"
+          },
+          "exclude_event_types": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Exclude Event Types"
+          },
+          "video_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Video Url"
+          },
+          "otio_timeline": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Otio Timeline"
+          },
+          "duration": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration"
+          },
+          "num_clips": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Num Clips"
+          },
+          "selected_edit_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Selected Edit Ids"
+          },
+          "render_job_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Render Job Id"
+          },
+          "thumbnail_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Url"
+          },
+          "failure_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Reason"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "project_id"
+        ],
+        "title": "PublicRecapResponse"
+      },
+      "RecapOptions": {
+        "properties": {
+          "start_style": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "short_walkout",
+                  "full_walkout"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Style"
+          },
+          "ending_style": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "auto",
+                  "decision_or_ending"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ending Style"
+          },
+          "pacing": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "tight_action",
+                  "balanced",
+                  "action_sprint"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pacing"
+          },
+          "editorial_prompt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Editorial Prompt"
+          },
+          "duration_mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "exact",
+                  "range",
+                  "uncapped"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Duration Mode"
+          },
+          "target_duration_min_seconds": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 3600,
+                "minimum": 60
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Duration Min Seconds"
+          },
+          "target_duration_max_seconds": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "maximum": 3600,
+                "minimum": 60
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Duration Max Seconds"
+          }
+        },
+        "type": "object",
+        "title": "RecapOptions"
+      },
+      "RenderVideoOptions": {
+        "properties": {
+          "render_video": {
+            "type": "string",
+            "enum": [
+              "ffmpeg",
+              "none"
+            ],
+            "title": "Render Video"
+          },
+          "retention_seconds": {
+            "type": "integer",
+            "title": "Retention Seconds",
+            "default": 86400
+          }
+        },
+        "type": "object",
+        "required": [
+          "render_video"
+        ],
+        "title": "RenderVideoOptions"
+      },
+      "SignedUrlResponse": {
+        "properties": {
+          "signed_url": {
+            "type": "string",
+            "title": "Signed Url"
+          },
+          "expires_in_seconds": {
+            "type": "integer",
+            "title": "Expires In Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "signed_url",
+          "expires_in_seconds"
+        ],
+        "title": "SignedUrlResponse"
+      },
+      "TaskInfo": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "project_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Project Id"
+          },
+          "srt_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Srt Url"
+          },
+          "task_payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Task Payload",
+            "default": {}
+          },
+          "assigned": {
+            "type": "boolean",
+            "title": "Assigned",
+            "default": false
+          },
+          "time_remaining_hours": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Remaining Hours"
+          },
+          "task_status": {
+            "type": "string",
+            "title": "Task Status"
+          },
+          "failure_reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Failure Reason"
+          }
+        },
+        "type": "object",
+        "required": [
+          "task_id",
+          "task_status"
+        ],
+        "title": "TaskInfo"
+      },
+      "TaskResult": {
+        "type": "string",
+        "enum": [
+          "success",
+          "failure"
+        ],
+        "title": "TaskResult"
+      },
+      "TeamNames": {
+        "properties": {
+          "home_team_name": {
+            "type": "string",
+            "title": "Home Team Name"
+          },
+          "away_team_name": {
+            "type": "string",
+            "title": "Away Team Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "home_team_name",
+          "away_team_name"
+        ],
+        "title": "TeamNames"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "WarmupRequest": {
+        "properties": {
+          "sport": {
+            "$ref": "#/components/schemas/NarrativeSport"
+          },
+          "max_life_hours": {
+            "type": "number",
+            "title": "Max Life Hours",
+            "default": 6
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sport"
+        ],
+        "title": "WarmupRequest"
+      },
+      "WarmupResponse": {
+        "properties": {
+          "success": {
+            "$ref": "#/components/schemas/TaskResult"
+          },
+          "narrative_task_id": {
+            "type": "string",
+            "title": "Narrative Task Id"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          }
+        },
+        "type": "object",
+        "required": [
+          "success",
+          "narrative_task_id"
+        ],
+        "title": "WarmupResponse"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.narrative-sports.com"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/usenarrative-sports-openapi-original.json
+docs: https://docs.narrative-sports.com/authentication
+summary:
+  types:
+  - http
+  scheme: bearer
+  credential: static API key sent as a Bearer token
+schemes:
+- name: HTTPBearer
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/usenarrative-sports-openapi-original.json
+  details:
+    header: 'Authorization: Bearer <API_KEY>'
+    key_format: sk-nr-<32 hex characters>
+    key_management: https://app.narrative-sports.com/api-dashboard
+    display: keys shown truncated in the dashboard (e.g. sk-nr-a1b2****)
+    unauthenticated_endpoints:
+    - GET /v1/health
+    failure_modes:
+      '401': 'missing or invalid API key (detail envelope)'
+      '403': 'account not enabled for task creation (no concurrent task limit configured)'
+notes: No OAuth2/OIDC surface — a single static API-key-as-bearer scheme covers
+  the whole API. Keys are created and rotated in the app dashboard.

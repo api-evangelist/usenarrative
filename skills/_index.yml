@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: generated
+notes: Spec ships no operationIds (FastAPI export), so skill operations reference
+  METHOD /path pairs verified against openapi/usenarrative-sports-openapi-original.json.
+skills:
+- file: usenarrative-live-highlights.md
+  name: Process a live sports stream into highlights
+  api: openapi/usenarrative-sports-openapi-original.json
+  operations:
+  - POST /v1/tasks/create-task
+  - GET /v1/tasks/{task_id}/info
+  - GET /v1/highlights
+  - GET /v1/highlights/{highlight_id}/signed-url
+  - POST /v1/highlights/batch-signed-urls
+  - POST /v1/tasks/{task_id}/kill
+- file: usenarrative-game-recap.md
+  name: Create a single-game recap
+  api: openapi/usenarrative-sports-openapi-original.json
+  operations:
+  - GET /v1/tasks/{task_id}/info
+  - GET /v1/projects/{project_id}/highlight-options
+  - POST /v1/recaps
+  - GET /v1/recaps/{recap_id}
+  - GET /v1/recaps
+  - DELETE /v1/recaps/{recap_id}
+- file: usenarrative-highlight-package.md
+  name: Build a multi-game highlight package
+  api: openapi/usenarrative-sports-openapi-original.json
+  operations:
+  - GET /v1/projects/{project_id}/highlight-options
+  - POST /v1/highlight-packages
+  - GET /v1/highlight-packages/{package_id}
+  - GET /v1/highlight-packages
+  - GET /v1/highlight-packages/batch
+  - DELETE /v1/highlight-packages/{package_id}

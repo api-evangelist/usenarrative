@@ -1,0 +1,45 @@
+# Narrative Sports
+
+## Docs
+
+- [Assign Task](https://docs.narrative-sports.com/api-reference/sports/assign-task.md): Assign work to a previously warmed-up instance (deprecated)
+- [Batch Highlight Packages](https://docs.narrative-sports.com/api-reference/sports/batch-highlight-packages.md): Retrieve paginated package detail with ETag support
+- [Batch Signed URLs](https://docs.narrative-sports.com/api-reference/sports/batch-signed-urls.md): Generate time-limited signed URLs for multiple highlight videos in a single request
+- [Create Highlight Package](https://docs.narrative-sports.com/api-reference/sports/create-highlight-package.md): Create a multi-game highlight package from multiple projects
+- [Create Recap](https://docs.narrative-sports.com/api-reference/sports/create-recap.md): Create a single-game recap from a project
+- [Create Task](https://docs.narrative-sports.com/api-reference/sports/create-task.md): Create a task, launch a worker, and receive the SRT URL in one call
+- [Delete Highlight Package](https://docs.narrative-sports.com/api-reference/sports/delete-highlight-package.md): Delete a highlight package
+- [Delete Recap](https://docs.narrative-sports.com/api-reference/sports/delete-recap.md): Delete a game recap
+- [Extend Task Life](https://docs.narrative-sports.com/api-reference/sports/extend-task-life.md): Increase the maximum lifetime of an active task
+- [Get Highlight](https://docs.narrative-sports.com/api-reference/sports/get-highlight.md): Get metadata for a single highlight by ID
+- [Get Highlight Package](https://docs.narrative-sports.com/api-reference/sports/get-highlight-package.md): Get details of a highlight package
+- [Get Project Highlight Options](https://docs.narrative-sports.com/api-reference/sports/get-project-highlight-options.md): Discover package creation options for a project
+- [Get Recap](https://docs.narrative-sports.com/api-reference/sports/get-recap.md): Get details of a game recap
+- [Get Signed URL](https://docs.narrative-sports.com/api-reference/sports/get-signed-url.md): Generate a time-limited signed URL for downloading a rendered highlight video
+- [Get Task Info](https://docs.narrative-sports.com/api-reference/sports/get-task-info.md): Get detailed information about a single task
+- [Get Task Status](https://docs.narrative-sports.com/api-reference/sports/get-task-status.md): Poll for warmup task readiness before calling assign-task (deprecated)
+- [Health](https://docs.narrative-sports.com/api-reference/sports/health.md): Check API availability
+- [API Overview](https://docs.narrative-sports.com/api-reference/sports/introduction.md): Complete reference for the Narrative Sports API
+- [Kill Task](https://docs.narrative-sports.com/api-reference/sports/kill-task.md): Stop a task gracefully (default) or immediately
+- [List Highlight Packages](https://docs.narrative-sports.com/api-reference/sports/list-highlight-packages.md): List all highlight packages
+- [List Highlights](https://docs.narrative-sports.com/api-reference/sports/list-highlights.md): List all highlights for the authenticated customer with optional filtering
+- [List Recaps](https://docs.narrative-sports.com/api-reference/sports/list-recaps.md): List all game recaps
+- [List Tasks](https://docs.narrative-sports.com/api-reference/sports/list-tasks.md): List all tasks with status, SRT URLs, and time remaining
+- [Warm Up Instance](https://docs.narrative-sports.com/api-reference/sports/warmup.md): Pre-start a worker instance for faster task assignment (deprecated)
+- [Authentication](https://docs.narrative-sports.com/authentication.md): How to authenticate with the Narrative Sports API
+- [Dashboard Integration](https://docs.narrative-sports.com/concepts/dashboard-integration.md): How rendered highlights appear in your dashboard
+- [Event Types](https://docs.narrative-sports.com/concepts/event-types.md): Reference of all event types detected by Narrative Sports, organized by sport
+- [Multi-Fight Cards](https://docs.narrative-sports.com/concepts/multi-fight-cards.md): How MMA fight cards are delineated into distinct fights, rounds, and fighter pairings
+- [OTIO Format](https://docs.narrative-sports.com/concepts/otio-format.md): OTIO output standard and portrait crop effect
+- [Video Input Requirements](https://docs.narrative-sports.com/concepts/video-input-requirements.md): Minimum stream requirements for reliable ingest and portrait cropping
+- [Create Game Recaps](https://docs.narrative-sports.com/game-recap-quickstart.md): Create and retrieve a single-game recap from an existing project
+- [Create Highlight Packages](https://docs.narrative-sports.com/highlight-package-quickstart.md): Create and retrieve a highlight package from an existing project
+- [Welcome to Narrative Sports](https://docs.narrative-sports.com/introduction.md): AI-powered sports video analysis and highlight generation
+- [No Highlights Detected](https://docs.narrative-sports.com/no-highlights.md): Common reasons why Narrative may not produce highlights from your stream
+- [Quickstart](https://docs.narrative-sports.com/quickstart.md): Go from zero to highlights in minutes
+- [Supported Languages](https://docs.narrative-sports.com/supported-languages.md): Languages supported for audio processing and highlight detection
+
+## OpenAPI Specs
+
+- [openapi](https://docs.narrative-sports.com/openapi.json)
+- [sports-openapi](https://docs.narrative-sports.com/api-reference/sports-openapi.json)
