@@ -1,0 +1,856 @@
+{
+  "item": [
+    {
+      "id": "1c1aec3e-64a8-4f14-bd7c-8556bd93b31b",
+      "name": "Recaps",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37c89fed-5c06-46f8-8e76-8ebed130342c",
+          "name": "Create Recap",
+          "request": {
+            "name": "Create Recap",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "recaps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"<integer>\",\n  \"target_duration_seconds\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"exclude_event_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"selected_edit_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"recap_mode\": \"custom\",\n  \"fight_ceremony_config\": [\n    {\n      \"fight_number\": \"<integer>\",\n      \"include_walkon\": false,\n      \"include_decision\": false\n    },\n    {\n      \"fight_number\": \"<integer>\",\n      \"include_walkon\": false,\n      \"include_decision\": false\n    }\n  ],\n  \"render_video\": \"ffmpeg\",\n  \"sport\": \"<string>\",\n  \"recap_options\": {\n    \"start_style\": \"<string>\",\n    \"ending_style\": \"<string>\",\n    \"pacing\": \"<string>\",\n    \"editorial_prompt\": \"<string>\",\n    \"duration_mode\": \"<string>\",\n    \"target_duration_min_seconds\": \"<integer>\",\n    \"target_duration_max_seconds\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c87416e4-088c-43a0-b2e6-c0763af05cee",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"<integer>\",\n  \"target_duration_seconds\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"exclude_event_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"selected_edit_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"recap_mode\": \"custom\",\n  \"fight_ceremony_config\": [\n    {\n      \"fight_number\": 763,\n      \"include_walkon\": false,\n      \"include_decision\": false\n    },\n    {\n      \"fight_number\": 4259,\n      \"include_walkon\": false,\n      \"include_decision\": false\n    }\n  ],\n  \"render_video\": \"ffmpeg\",\n  \"sport\": \"<string>\",\n  \"recap_options\": {\n    \"start_style\": \"full_walkout\",\n    \"ending_style\": \"auto\",\n    \"pacing\": \"balanced\",\n    \"editorial_prompt\": \"string\",\n    \"duration_mode\": \"range\",\n    \"target_duration_min_seconds\": 1874,\n    \"target_duration_max_seconds\": 2341\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 239,\n  \"status\": \"queued\",\n  \"task_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "380cced7-4ecf-4182-922d-9af778571919",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"<integer>\",\n  \"target_duration_seconds\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"exclude_event_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"selected_edit_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"recap_mode\": \"custom\",\n  \"fight_ceremony_config\": [\n    {\n      \"fight_number\": 763,\n      \"include_walkon\": false,\n      \"include_decision\": false\n    },\n    {\n      \"fight_number\": 4259,\n      \"include_walkon\": false,\n      \"include_decision\": false\n    }\n  ],\n  \"render_video\": \"ffmpeg\",\n  \"sport\": \"<string>\",\n  \"recap_options\": {\n    \"start_style\": \"full_walkout\",\n    \"ending_style\": \"auto\",\n    \"pacing\": \"balanced\",\n    \"editorial_prompt\": \"string\",\n    \"duration_mode\": \"range\",\n    \"target_duration_min_seconds\": 1874,\n    \"target_duration_max_seconds\": 2341\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a74e3a26-cf2d-48d7-9e4b-e12d82fe5e12",
+          "name": "List Recaps",
+          "request": {
+            "name": "List Recaps",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "recaps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e5e0dada-323e-4335-9d7f-19ec785738a2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"recaps\": [\n    {\n      \"id\": 9994,\n      \"status\": \"string\",\n      \"project_id\": 5876,\n      \"name\": \"string\",\n      \"editor_project_id\": \"string\",\n      \"target_duration_seconds\": 4106,\n      \"render_video\": \"string\",\n      \"exclude_event_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"video_url\": \"string\",\n      \"otio_timeline\": {\n        \"key_0\": true\n      },\n      \"duration\": 7251.181415913444,\n      \"num_clips\": 263,\n      \"selected_edit_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"render_job_id\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"failure_reason\": \"string\",\n      \"task_id\": \"string\",\n      \"created_at\": \"string\"\n    },\n    {\n      \"id\": 5434,\n      \"status\": \"string\",\n      \"project_id\": 6288,\n      \"name\": \"string\",\n      \"editor_project_id\": \"string\",\n      \"target_duration_seconds\": 2423,\n      \"render_video\": \"string\",\n      \"exclude_event_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"video_url\": \"string\",\n      \"otio_timeline\": {\n        \"key_0\": \"string\",\n        \"key_1\": 954\n      },\n      \"duration\": 3561.7585549997543,\n      \"num_clips\": 6390,\n      \"selected_edit_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"render_job_id\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"failure_reason\": \"string\",\n      \"task_id\": \"string\",\n      \"created_at\": \"string\"\n    }\n  ],\n  \"total\": 7095,\n  \"next_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc824168-4f25-4d75-b3c1-43767c9dfa8e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8acb9314-4d11-402c-86b2-1e01e41689d7",
+          "name": "Batch Recaps",
+          "request": {
+            "name": "Batch Recaps",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "recaps",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_after",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_before",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0094fb17-5719-4e53-acd7-1a6f4d7933b2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"recaps\": [\n    {\n      \"id\": 5404,\n      \"status\": \"string\",\n      \"project_id\": 7052,\n      \"name\": \"string\",\n      \"editor_project_id\": \"string\",\n      \"target_duration_seconds\": 2193,\n      \"render_video\": \"string\",\n      \"exclude_event_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"video_url\": \"string\",\n      \"otio_timeline\": {\n        \"key_0\": 2700.4846014430263\n      },\n      \"duration\": 6249.164666929353,\n      \"num_clips\": 8289,\n      \"selected_edit_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"render_job_id\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"failure_reason\": \"string\",\n      \"task_id\": \"string\",\n      \"created_at\": \"string\"\n    },\n    {\n      \"id\": 7361,\n      \"status\": \"string\",\n      \"project_id\": 6802,\n      \"name\": \"string\",\n      \"editor_project_id\": \"string\",\n      \"target_duration_seconds\": 3654,\n      \"render_video\": \"string\",\n      \"exclude_event_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"video_url\": \"string\",\n      \"otio_timeline\": {\n        \"key_0\": true\n      },\n      \"duration\": 6200.008020487052,\n      \"num_clips\": 8348,\n      \"selected_edit_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"render_job_id\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"failure_reason\": \"string\",\n      \"task_id\": \"string\",\n      \"created_at\": \"string\"\n    }\n  ],\n  \"next_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02627095-7deb-41c4-b8c6-1f74429df0e2",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13e263f7-768b-433e-abb5-60f5ded7a06a",
+          "name": "Get Recap",
+          "request": {
+            "name": "Get Recap",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "recaps",
+                ":recap_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "recap_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a4fae981-53b0-462f-9cc8-d273e3d62eba",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps",
+                    ":recap_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "recap_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4587,\n  \"status\": \"string\",\n  \"project_id\": 8078,\n  \"name\": \"string\",\n  \"editor_project_id\": \"string\",\n  \"target_duration_seconds\": 213,\n  \"render_video\": \"string\",\n  \"exclude_event_types\": [\n    \"string\",\n    \"string\"\n  ],\n  \"video_url\": \"string\",\n  \"otio_timeline\": {\n    \"key_0\": 2802\n  },\n  \"duration\": 3266.945738205539,\n  \"num_clips\": 779,\n  \"selected_edit_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"render_job_id\": \"string\",\n  \"thumbnail_url\": \"string\",\n  \"failure_reason\": \"string\",\n  \"task_id\": \"string\",\n  \"created_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab712247-5741-429a-9d41-d351392735ef",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps",
+                    ":recap_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "recap_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "544bb281-41dc-44d8-938d-8e4b9a496c1c",
+          "name": "Delete Recap",
+          "request": {
+            "name": "Delete Recap",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "recaps",
+                ":recap_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "recap_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9ba9ebc4-9fc9-4eb6-9877-54513793efc4",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps",
+                    ":recap_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "recap_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1317c8f-6089-4a28-95ac-ce9e38c5e7eb",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "recaps",
+                    ":recap_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "recap_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.narrative-sports.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "561773bf-ce09-4620-99f0-1ee7829d59f1",
+    "name": "Narrative Sports Health Recaps API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

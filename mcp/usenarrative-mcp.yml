@@ -2,10 +2,9 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: openapi/usenarrative-sports-openapi-original.json
-notes: No official hosted MCP server was found for Narrative Sports (no MCP
-  references in docs.narrative-sports.com, no registry listing). Candidate tool
-  list derived from the published OpenAPI operations. The spec ships no
-  operationIds, so tools are named from method + path.
+notes: No official hosted MCP server was found for Narrative Sports (no MCP references in docs.narrative-sports.com,
+  no registry listing). Candidate tool list derived from the published OpenAPI operations. The spec ships
+  no operationIds, so tools are named from method + path.
 server:
   name: usenarrative
   transport: http
@@ -74,3 +73,9 @@ tools:
 - name: get_project_highlight_options
   description: Discover package creation options for a project
   source_operation: openapi/usenarrative-sports-openapi-original.json#GET /v1/projects/{project_id}/highlight-options
+deployment:
+  mode: none
+  verified: derived
+  tools: 21
+  checked: '2026-08-12'
+  source: catalog MCP census

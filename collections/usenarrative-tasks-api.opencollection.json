@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narrative Sports Health Tasks API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Warm Up Instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.narrative-sports.com/v1/tasks/warmup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Warm Up Instance"
+        },
+        {
+          "info": {
+            "name": "Assign Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.narrative-sports.com/v1/tasks/assign-task",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Assign Task"
+        },
+        {
+          "info": {
+            "name": "Create Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.narrative-sports.com/v1/tasks/create-task",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create Task"
+        },
+        {
+          "info": {
+            "name": "List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/tasks/list-tasks",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List Tasks"
+        },
+        {
+          "info": {
+            "name": "Get Task Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/tasks/:task_id/status",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Task Status"
+        },
+        {
+          "info": {
+            "name": "Get Task Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/tasks/:task_id/info",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Task Info"
+        },
+        {
+          "info": {
+            "name": "Kill Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.narrative-sports.com/v1/tasks/:task_id/kill",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Kill Task"
+        },
+        {
+          "info": {
+            "name": "Extend Task Life",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.narrative-sports.com/v1/tasks/:task_id/extend-life",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Extend Task Life"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

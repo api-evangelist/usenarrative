@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narrative Sports Health Highlights API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Highlights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Highlights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/highlights",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List Highlights"
+        },
+        {
+          "info": {
+            "name": "Get Highlight",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/highlights/:highlight_id",
+            "params": [
+              {
+                "name": "highlight_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Highlight"
+        },
+        {
+          "info": {
+            "name": "Get Signed URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/highlights/:highlight_id/signed-url",
+            "params": [
+              {
+                "name": "highlight_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "expiry",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "download",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "variant",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Signed URL"
+        },
+        {
+          "info": {
+            "name": "Batch Signed URLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.narrative-sports.com/v1/highlights/batch-signed-urls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Batch Signed URLs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

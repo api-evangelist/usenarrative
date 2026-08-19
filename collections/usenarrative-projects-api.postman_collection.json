@@ -1,0 +1,191 @@
+{
+  "item": [
+    {
+      "id": "f504e783-8abe-489a-8a66-55ad6ab41e11",
+      "name": "Projects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b201439-7fb8-4794-9c81-11d0f6b12a6a",
+          "name": "Get Project Highlight Options",
+          "request": {
+            "name": "Get Project Highlight Options",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":project_id",
+                "highlight-options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "project_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd4a6c8c-3556-46b0-82d9-8eef2a74fc00",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":project_id",
+                    "highlight-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"project_id\": 2614,\n  \"event_types\": [\n    {\n      \"value\": \"string\",\n      \"count\": 1512,\n      \"otio_ready_count\": 8892\n    },\n    {\n      \"value\": \"string\",\n      \"count\": 740,\n      \"otio_ready_count\": 9861\n    }\n  ],\n  \"teams\": [\n    {\n      \"value\": \"string\",\n      \"count\": 1604,\n      \"otio_ready_count\": 3735\n    },\n    {\n      \"value\": \"string\",\n      \"count\": 7921,\n      \"otio_ready_count\": 7252\n    }\n  ],\n  \"players\": [\n    {\n      \"value\": \"string\",\n      \"count\": 7555,\n      \"otio_ready_count\": 6492\n    },\n    {\n      \"value\": \"string\",\n      \"count\": 2730,\n      \"otio_ready_count\": 4635\n    }\n  ],\n  \"fights\": [\n    {\n      \"fight_number\": 7644,\n      \"count\": 1330,\n      \"otio_ready_count\": 9096,\n      \"round_numbers\": [\n        5720,\n        57\n      ],\n      \"highlight_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fight_name\": \"string\"\n    },\n    {\n      \"fight_number\": 3684,\n      \"count\": 3500,\n      \"otio_ready_count\": 1220,\n      \"round_numbers\": [\n        8953,\n        1147\n      ],\n      \"highlight_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fight_name\": \"string\"\n    }\n  ],\n  \"highlights\": [\n    {\n      \"id\": \"string\",\n      \"otio_ready\": false,\n      \"event_type\": \"string\",\n      \"custom_category_name\": \"string\",\n      \"event_description\": \"string\",\n      \"event_timestamp_seconds\": 6142.269490376478,\n      \"edit_length\": 147.47993781865864,\n      \"target_team\": \"string\",\n      \"target_players\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fight_number\": 6786,\n      \"round_number\": 1913,\n      \"fight_name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"otio_ready\": true,\n      \"event_type\": \"string\",\n      \"custom_category_name\": \"string\",\n      \"event_description\": \"string\",\n      \"event_timestamp_seconds\": 2214.03263685647,\n      \"edit_length\": 9038.902133955418,\n      \"target_team\": \"string\",\n      \"target_players\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fight_number\": 3345,\n      \"round_number\": 9307,\n      \"fight_name\": \"string\"\n    }\n  ],\n  \"total_highlights\": 795,\n  \"otio_ready_highlights\": 7788,\n  \"project_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ca91068-734a-4d76-8b0c-5cbd710457a9",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":project_id",
+                    "highlight-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "project_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.narrative-sports.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "de1d60d9-491c-47a0-a598-74d034532495",
+    "name": "Narrative Sports Health Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

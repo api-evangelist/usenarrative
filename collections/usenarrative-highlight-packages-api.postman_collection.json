@@ -1,0 +1,895 @@
+{
+  "item": [
+    {
+      "id": "a3282533-87cb-4e91-b912-4fe5b0e45b9d",
+      "name": "Highlight Packages",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a790a380-c712-40aa-907d-a28e7d2b4d4f",
+          "name": "Create Highlight Package",
+          "request": {
+            "name": "Create Highlight Package",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "highlight-packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_ids\": [\n    \"<integer>\"\n  ],\n  \"target_duration_seconds\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"editorial_prompt\": \"<string>\",\n  \"team_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"player_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_type_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fight_filter\": [\n    {\n      \"project_id\": \"<integer>\",\n      \"fight_numbers\": [\n        \"<integer>\"\n      ]\n    },\n    {\n      \"project_id\": \"<integer>\",\n      \"fight_numbers\": [\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"selected_fights\": [\n    {\n      \"project_id\": \"<integer>\",\n      \"fight_numbers\": [\n        \"<integer>\"\n      ]\n    },\n    {\n      \"project_id\": \"<integer>\",\n      \"fight_numbers\": [\n        \"<integer>\"\n      ]\n    }\n  ],\n  \"selected_edit_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sport\": \"<string>\",\n  \"recap_options\": {\n    \"start_style\": \"<string>\",\n    \"ending_style\": \"<string>\",\n    \"pacing\": \"<string>\",\n    \"editorial_prompt\": \"<string>\",\n    \"duration_mode\": \"<string>\",\n    \"target_duration_min_seconds\": \"<integer>\",\n    \"target_duration_max_seconds\": \"<integer>\"\n  },\n  \"render_video\": \"ffmpeg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "149b3750-967a-48fb-96dd-bfd943e139e7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_ids\": [\n    \"<integer>\"\n  ],\n  \"target_duration_seconds\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"editorial_prompt\": \"<string>\",\n  \"team_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"player_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_type_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fight_filter\": [\n    {\n      \"project_id\": 234,\n      \"fight_numbers\": [\n        8501\n      ]\n    },\n    {\n      \"project_id\": 7348,\n      \"fight_numbers\": [\n        6429\n      ]\n    }\n  ],\n  \"selected_fights\": [\n    {\n      \"project_id\": 857,\n      \"fight_numbers\": [\n        9063\n      ]\n    },\n    {\n      \"project_id\": 3593,\n      \"fight_numbers\": [\n        4744\n      ]\n    }\n  ],\n  \"selected_edit_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sport\": \"<string>\",\n  \"recap_options\": {\n    \"start_style\": \"short_walkout\",\n    \"ending_style\": \"decision_or_ending\",\n    \"pacing\": \"tight_action\",\n    \"editorial_prompt\": \"string\",\n    \"duration_mode\": \"exact\",\n    \"target_duration_min_seconds\": 1867,\n    \"target_duration_max_seconds\": 2784\n  },\n  \"render_video\": \"ffmpeg\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3736,\n  \"status\": \"queued\",\n  \"task_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae70414a-c967-4192-97de-e0854f2513fa",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_ids\": [\n    \"<integer>\"\n  ],\n  \"target_duration_seconds\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"editorial_prompt\": \"<string>\",\n  \"team_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"player_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"event_type_filter\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fight_filter\": [\n    {\n      \"project_id\": 234,\n      \"fight_numbers\": [\n        8501\n      ]\n    },\n    {\n      \"project_id\": 7348,\n      \"fight_numbers\": [\n        6429\n      ]\n    }\n  ],\n  \"selected_fights\": [\n    {\n      \"project_id\": 857,\n      \"fight_numbers\": [\n        9063\n      ]\n    },\n    {\n      \"project_id\": 3593,\n      \"fight_numbers\": [\n        4744\n      ]\n    }\n  ],\n  \"selected_edit_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sport\": \"<string>\",\n  \"recap_options\": {\n    \"start_style\": \"short_walkout\",\n    \"ending_style\": \"decision_or_ending\",\n    \"pacing\": \"tight_action\",\n    \"editorial_prompt\": \"string\",\n    \"duration_mode\": \"exact\",\n    \"target_duration_min_seconds\": 1867,\n    \"target_duration_max_seconds\": 2784\n  },\n  \"render_video\": \"ffmpeg\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfb3b669-fb58-4c9f-afe7-b16110a0d7ab",
+          "name": "List Highlight Packages",
+          "request": {
+            "name": "List Highlight Packages",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "highlight-packages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_after",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_before",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "845ed7bd-1946-4cd3-a69e-3abc0c09d7e7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"packages\": [\n    {\n      \"id\": 4999,\n      \"status\": \"string\",\n      \"project_ids\": [\n        854,\n        1312\n      ],\n      \"has_otio_timeline\": false,\n      \"has_video\": true,\n      \"name\": \"string\",\n      \"target_duration_seconds\": 1081,\n      \"render_video\": \"none\",\n      \"fight_filter\": [\n        {\n          \"project_id\": 9364,\n          \"fight_numbers\": [\n            709\n          ]\n        },\n        {\n          \"project_id\": 4870,\n          \"fight_numbers\": [\n            5353\n          ]\n        }\n      ],\n      \"duration\": 1742.221907785413,\n      \"num_clips\": 2735,\n      \"render_job_id\": \"string\",\n      \"failure_reason\": \"string\",\n      \"task_id\": \"string\",\n      \"created_at\": \"string\"\n    },\n    {\n      \"id\": 3527,\n      \"status\": \"string\",\n      \"project_ids\": [\n        2794,\n        1598\n      ],\n      \"has_otio_timeline\": false,\n      \"has_video\": true,\n      \"name\": \"string\",\n      \"target_duration_seconds\": 8607,\n      \"render_video\": \"none\",\n      \"fight_filter\": [\n        {\n          \"project_id\": 1527,\n          \"fight_numbers\": [\n            7669\n          ]\n        },\n        {\n          \"project_id\": 1094,\n          \"fight_numbers\": [\n            6060\n          ]\n        }\n      ],\n      \"duration\": 3368.2081304614144,\n      \"num_clips\": 4814,\n      \"render_job_id\": \"string\",\n      \"failure_reason\": \"string\",\n      \"task_id\": \"string\",\n      \"created_at\": \"string\"\n    }\n  ],\n  \"total\": 316,\n  \"next_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ada6bf1-a6f8-4e22-b881-2b30cfc154dd",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5584031c-ad04-4375-b674-e5d5caa5da9b",
+          "name": "Batch Highlight Packages",
+          "request": {
+            "name": "Batch Highlight Packages",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "highlight-packages",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_after",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_before",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7b5bfdb5-7436-414e-9868-b2abe102b59d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"packages\": [\n    {\n      \"id\": 7619,\n      \"status\": \"string\",\n      \"project_ids\": [\n        9459,\n        6934\n      ],\n      \"editor_project_id\": \"string\",\n      \"user_id\": \"string\",\n      \"name\": \"string\",\n      \"target_duration_seconds\": 8017,\n      \"render_video\": \"none\",\n      \"editorial_prompt\": \"string\",\n      \"team_filter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"player_filter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"event_type_filter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fight_filter\": [\n        {\n          \"project_id\": 1845,\n          \"fight_numbers\": [\n            6407\n          ]\n        },\n        {\n          \"project_id\": 4241,\n          \"fight_numbers\": [\n            5452\n          ]\n        }\n      ],\n      \"video_url\": \"string\",\n      \"otio_timeline\": {\n        \"key_0\": 3421.1815882109954\n      },\n      \"duration\": 295.18403432042817,\n      \"num_clips\": 6706,\n      \"selected_edit_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"render_job_id\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"failure_reason\": \"string\",\n      \"task_id\": \"string\",\n      \"created_at\": \"string\"\n    },\n    {\n      \"id\": 85,\n      \"status\": \"string\",\n      \"project_ids\": [\n        1609,\n        5415\n      ],\n      \"editor_project_id\": \"string\",\n      \"user_id\": \"string\",\n      \"name\": \"string\",\n      \"target_duration_seconds\": 9381,\n      \"render_video\": \"ffmpeg\",\n      \"editorial_prompt\": \"string\",\n      \"team_filter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"player_filter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"event_type_filter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"fight_filter\": [\n        {\n          \"project_id\": 726,\n          \"fight_numbers\": [\n            376\n          ]\n        },\n        {\n          \"project_id\": 6596,\n          \"fight_numbers\": [\n            6154\n          ]\n        }\n      ],\n      \"video_url\": \"string\",\n      \"otio_timeline\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"duration\": 3601.662334810689,\n      \"num_clips\": 7744,\n      \"selected_edit_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"render_job_id\": \"string\",\n      \"thumbnail_url\": \"string\",\n      \"failure_reason\": \"string\",\n      \"task_id\": \"string\",\n      \"created_at\": \"string\"\n    }\n  ],\n  \"next_cursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4ed6144-7dcd-4f1b-b5b0-825a74126de8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_after",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_before",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8329b65e-a5c3-42d9-9ad0-1ce688fe1b18",
+          "name": "Get Highlight Package",
+          "request": {
+            "name": "Get Highlight Package",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "highlight-packages",
+                ":package_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "package_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "36261991-6a2a-4ba3-ab66-0e9f1ae5b510",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4080,\n  \"status\": \"string\",\n  \"project_ids\": [\n    7941,\n    9322\n  ],\n  \"editor_project_id\": \"string\",\n  \"user_id\": \"string\",\n  \"name\": \"string\",\n  \"target_duration_seconds\": 9535,\n  \"render_video\": \"none\",\n  \"editorial_prompt\": \"string\",\n  \"team_filter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"player_filter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"event_type_filter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"fight_filter\": [\n    {\n      \"project_id\": 4989,\n      \"fight_numbers\": [\n        3629\n      ]\n    },\n    {\n      \"project_id\": 8215,\n      \"fight_numbers\": [\n        5196\n      ]\n    }\n  ],\n  \"video_url\": \"string\",\n  \"otio_timeline\": {\n    \"key_0\": false\n  },\n  \"duration\": 4831.831297072199,\n  \"num_clips\": 9695,\n  \"selected_edit_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"render_job_id\": \"string\",\n  \"thumbnail_url\": \"string\",\n  \"failure_reason\": \"string\",\n  \"task_id\": \"string\",\n  \"created_at\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ff5f72d-af9f-4349-8889-757b70b9d885",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f021325-5f6d-46b2-affd-588b58e2932a",
+          "name": "Delete Highlight Package",
+          "request": {
+            "name": "Delete Highlight Package",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "highlight-packages",
+                ":package_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "package_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8113c06a-908a-482e-b7bb-35a944d5f3a3",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "51f2083e-8008-4f73-88d1-36129ce4d2d5",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlight-packages",
+                    ":package_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "package_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.narrative-sports.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "78dccbfe-723d-4bf0-8283-f287942fc978",
+    "name": "Narrative Sports Health Highlight Packages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

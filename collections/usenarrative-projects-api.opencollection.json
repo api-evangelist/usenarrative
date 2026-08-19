@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narrative Sports Health Projects API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Project Highlight Options",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/projects/:project_id/highlight-options",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Project Highlight Options"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

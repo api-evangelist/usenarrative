@@ -1,0 +1,695 @@
+{
+  "item": [
+    {
+      "id": "981415e8-9ffb-4759-8873-04ff640df0f5",
+      "name": "Highlights",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3322995d-bcbb-48dc-9fa8-7a3a1a6ef800",
+          "name": "List Highlights",
+          "request": {
+            "name": "List Highlights",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "highlights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "task_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ecb48559-b8c9-4fe6-a079-74050bb4df85",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"highlights\": [\n    {\n      \"id\": \"string\",\n      \"event_type\": \"string\",\n      \"custom_category_name\": \"string\",\n      \"event_description\": \"string\",\n      \"event_timestamp_seconds\": 5913.911615333156,\n      \"edit_length\": 9840.652891707283,\n      \"inclusion_reasoning\": \"string\",\n      \"created_at\": \"string\",\n      \"otio_edit\": {\n        \"key_0\": true,\n        \"key_1\": 3492,\n        \"key_2\": \"string\",\n        \"key_3\": 9680,\n        \"key_4\": \"string\"\n      },\n      \"target_team\": \"string\",\n      \"target_players\": [\n        \"string\",\n        \"string\"\n      ],\n      \"otio_crop\": {\n        \"key_0\": \"string\",\n        \"key_1\": false,\n        \"key_2\": true,\n        \"key_3\": 7671,\n        \"key_4\": 2572.0390465453124\n      },\n      \"source_archive\": {\n        \"key_0\": 9367.274634460888,\n        \"key_1\": 6300.600991995455\n      },\n      \"source_window\": {\n        \"key_0\": 4748,\n        \"key_1\": true,\n        \"key_2\": \"string\",\n        \"key_3\": 818\n      },\n      \"render_windows\": [\n        {\n          \"key_0\": 4371\n        },\n        {\n          \"key_0\": 9323\n        }\n      ],\n      \"editor_state\": {\n        \"key_0\": 3715.915079993436\n      },\n      \"editor_revision\": 8524,\n      \"editor_project_id\": \"string\",\n      \"fight_number\": 5840,\n      \"round_number\": 4385,\n      \"fight_name\": \"string\",\n      \"event_metadata\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1959.2821927676873,\n        \"key_2\": false,\n        \"key_3\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"event_type\": \"string\",\n      \"custom_category_name\": \"string\",\n      \"event_description\": \"string\",\n      \"event_timestamp_seconds\": 6570.2906957693385,\n      \"edit_length\": 6485.724266800159,\n      \"inclusion_reasoning\": \"string\",\n      \"created_at\": \"string\",\n      \"otio_edit\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": 9334.691516132109\n      },\n      \"target_team\": \"string\",\n      \"target_players\": [\n        \"string\",\n        \"string\"\n      ],\n      \"otio_crop\": {\n        \"key_0\": true\n      },\n      \"source_archive\": {\n        \"key_0\": 1787,\n        \"key_1\": 7419\n      },\n      \"source_window\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1343\n      },\n      \"render_windows\": [\n        {\n          \"key_0\": 9044\n        },\n        {\n          \"key_0\": 7965.51875266702,\n          \"key_1\": 5577\n        }\n      ],\n      \"editor_state\": {\n        \"key_0\": 8356.793406595285,\n        \"key_1\": 7394,\n        \"key_2\": false\n      },\n      \"editor_revision\": 8240,\n      \"editor_project_id\": \"string\",\n      \"fight_number\": 4531,\n      \"round_number\": 1188,\n      \"fight_name\": \"string\",\n      \"event_metadata\": {\n        \"key_0\": 3785.2743589374427,\n        \"key_1\": 3746.0049775152424\n      }\n    }\n  ],\n  \"total\": 6722\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ac0d359-ea4b-4206-b9df-9f033d2974e1",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51798fc5-f731-4491-937a-895efe43420f",
+          "name": "Get Highlight",
+          "request": {
+            "name": "Get Highlight",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "highlights",
+                ":highlight_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "highlight_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8c9aa0db-7805-4faf-9c4d-2d5f332fbb34",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlights",
+                    ":highlight_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "highlight_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"highlight\": {\n    \"id\": \"string\",\n    \"event_type\": \"string\",\n    \"custom_category_name\": \"string\",\n    \"event_description\": \"string\",\n    \"event_timestamp_seconds\": 2836.2243027897125,\n    \"edit_length\": 5252.001038648935,\n    \"inclusion_reasoning\": \"string\",\n    \"created_at\": \"string\",\n    \"otio_edit\": {\n      \"key_0\": 3458\n    },\n    \"target_team\": \"string\",\n    \"target_players\": [\n      \"string\",\n      \"string\"\n    ],\n    \"otio_crop\": {\n      \"key_0\": 541,\n      \"key_1\": 4583.158065725113\n    },\n    \"source_archive\": {\n      \"key_0\": 6326.837174481167,\n      \"key_1\": 4695.050229532901\n    },\n    \"source_window\": {\n      \"key_0\": \"string\",\n      \"key_1\": true,\n      \"key_2\": 9690.350310205731\n    },\n    \"render_windows\": [\n      {\n        \"key_0\": 4875.758144807888,\n        \"key_1\": true,\n        \"key_2\": 3831,\n        \"key_3\": true\n      },\n      {\n        \"key_0\": 5830,\n        \"key_1\": 3191\n      }\n    ],\n    \"editor_state\": {\n      \"key_0\": false\n    },\n    \"editor_revision\": 9353,\n    \"editor_project_id\": \"string\",\n    \"fight_number\": 4460,\n    \"round_number\": 9097,\n    \"fight_name\": \"string\",\n    \"event_metadata\": {\n      \"key_0\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f75b8690-1dec-4450-8774-b7a6c5e8c24f",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlights",
+                    ":highlight_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "highlight_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e701173-15a9-4b46-af97-e8d5110cc01d",
+          "name": "Get Signed URL",
+          "request": {
+            "name": "Get Signed URL",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "highlights",
+                ":highlight_id",
+                "signed-url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expiry",
+                  "value": "86400"
+                },
+                {
+                  "disabled": false,
+                  "key": "download",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "variant",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "highlight_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f783d785-f130-49e5-8745-5303c970e99a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlights",
+                    ":highlight_id",
+                    "signed-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expiry",
+                      "value": "86400"
+                    },
+                    {
+                      "key": "download",
+                      "value": "false"
+                    },
+                    {
+                      "key": "variant",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "highlight_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signed_url\": \"string\",\n  \"expires_in_seconds\": 2910\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20d0f6e5-2995-4fa4-acd2-6f18e42810f5",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlights",
+                    ":highlight_id",
+                    "signed-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expiry",
+                      "value": "86400"
+                    },
+                    {
+                      "key": "download",
+                      "value": "false"
+                    },
+                    {
+                      "key": "variant",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "highlight_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64264607-a853-45c5-a966-363f7b936a1d",
+          "name": "Batch Signed URLs",
+          "request": {
+            "name": "Batch Signed URLs",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "highlights",
+                "batch-signed-urls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"highlight_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiry\": 86400\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "168e3020-7a95-4722-97e1-c778efdc8999",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlights",
+                    "batch-signed-urls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"highlight_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiry\": 86400\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"signed_urls\": {\n    \"key_0\": \"string\"\n  },\n  \"expires_in_seconds\": 1232,\n  \"signed_poster_urls\": {},\n  \"signed_portrait_urls\": {},\n  \"signed_portrait_poster_urls\": {},\n  \"signed_square_urls\": {},\n  \"signed_square_poster_urls\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2fdc384-41da-401a-a573-1a2a02faf5fb",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "highlights",
+                    "batch-signed-urls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"highlight_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"expiry\": 86400\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.narrative-sports.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d0b541aa-b7ba-4df4-bcf6-00ecac166df0",
+    "name": "Narrative Sports Health Highlights API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

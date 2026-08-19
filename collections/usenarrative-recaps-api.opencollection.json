@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narrative Sports Health Recaps API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recaps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Recaps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/recaps",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List Recaps"
+        },
+        {
+          "info": {
+            "name": "Create Recap",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.narrative-sports.com/v1/recaps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create Recap"
+        },
+        {
+          "info": {
+            "name": "Batch Recaps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/recaps/batch",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Batch Recaps"
+        },
+        {
+          "info": {
+            "name": "Get Recap",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/recaps/:recap_id",
+            "params": [
+              {
+                "name": "recap_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Recap"
+        },
+        {
+          "info": {
+            "name": "Delete Recap",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.narrative-sports.com/v1/recaps/:recap_id",
+            "params": [
+              {
+                "name": "recap_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete Recap"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,165 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Narrative Sports Health Highlight Packages API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Highlight Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Highlight Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/highlight-packages",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List Highlight Packages"
+        },
+        {
+          "info": {
+            "name": "Create Highlight Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.narrative-sports.com/v1/highlight-packages",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create Highlight Package"
+        },
+        {
+          "info": {
+            "name": "Batch Highlight Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/highlight-packages/batch",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Batch Highlight Packages"
+        },
+        {
+          "info": {
+            "name": "Get Highlight Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.narrative-sports.com/v1/highlight-packages/:package_id",
+            "params": [
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Highlight Package"
+        },
+        {
+          "info": {
+            "name": "Delete Highlight Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.narrative-sports.com/v1/highlight-packages/:package_id",
+            "params": [
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete Highlight Package"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
