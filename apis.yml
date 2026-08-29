@@ -7,6 +7,18 @@ description: Narrative Sports (Narrative AI Inc., YC Fall 2025, listed by Y Comb
   key moments in real time, and returns rendered clips in multiple aspect ratios,
   single-game recaps, multi-game highlight packages, and OTIO edit timelines.
 url: https://raw.githubusercontent.com/api-evangelist/usenarrative/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
