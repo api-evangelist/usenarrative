@@ -1,12 +1,7 @@
 {
   "provider": "usenarrative",
   "sources": [
-    "usenarrative-health-api-openapi.yml",
-    "usenarrative-highlight-packages-api-openapi.yml",
-    "usenarrative-highlights-api-openapi.yml",
-    "usenarrative-projects-api-openapi.yml",
-    "usenarrative-recaps-api-openapi.yml",
-    "usenarrative-tasks-api-openapi.yml"
+    "_original/usenarrative-sports-openapi-original.json"
   ],
   "outputs": [
     "usenarrative-health-api-openapi.yml",
@@ -19,6 +14,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "usenarrative-sports-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "usenarrative-sports-openapi-original.json: declared missing tag: Health",
+    "usenarrative-sports-openapi-original.json: declared missing tag: Highlight Packages",
+    "usenarrative-sports-openapi-original.json: declared missing tag: Highlights",
+    "usenarrative-sports-openapi-original.json: declared missing tag: Projects",
+    "usenarrative-sports-openapi-original.json: declared missing tag: Recaps",
+    "usenarrative-sports-openapi-original.json: declared missing tag: Tasks",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "usenarrative-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usenarrative-highlight-packages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usenarrative-highlights-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usenarrative-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usenarrative-recaps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usenarrative-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Narrative Sports Health Projects API
+  title: Narrative Sports Projects API
   version: 1.0.0
 servers:
 - url: https://api.narrative-sports.com
@@ -34,42 +34,88 @@ paths:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
           description: Validation Error
+      operationId: getV1ProjectsByProjectIdHighlightOptions
+      x-operation-id-source: derived
 components:
   schemas:
-    FightOption:
+    HighlightOptionsResponse:
       properties:
-        fight_number:
+        project_id:
           type: integer
-          title: Fight Number
-        fight_name:
+          title: Project Id
+        project_name:
           anyOf:
           - type: string
           - type: 'null'
-          title: Fight Name
+          title: Project Name
+        event_types:
+          items:
+            $ref: '#/components/schemas/CountOption'
+          type: array
+          title: Event Types
+        teams:
+          items:
+            $ref: '#/components/schemas/CountOption'
+          type: array
+          title: Teams
+        players:
+          items:
+            $ref: '#/components/schemas/CountOption'
+          type: array
+          title: Players
+        fights:
+          items:
+            $ref: '#/components/schemas/FightOption'
+          type: array
+          title: Fights
+        highlights:
+          items:
+            $ref: '#/components/schemas/HighlightOption'
+          type: array
+          title: Highlights
+        total_highlights:
+          type: integer
+          title: Total Highlights
+        otio_ready_highlights:
+          type: integer
+          title: Otio Ready Highlights
+      type: object
+      required:
+      - project_id
+      - event_types
+      - teams
+      - players
+      - fights
+      - highlights
+      - total_highlights
+      - otio_ready_highlights
+      title: HighlightOptionsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CountOption:
+      properties:
+        value:
+          type: string
+          title: Value
         count:
           type: integer
           title: Count
         otio_ready_count:
           type: integer
           title: Otio Ready Count
-        round_numbers:
-          items:
-            type: integer
-          type: array
-          title: Round Numbers
-        highlight_ids:
-          items:
-            type: string
-          type: array
-          title: Highlight Ids
       type: object
       required:
-      - fight_number
+      - value
       - count
       - otio_ready_count
-      - round_numbers
-      - highlight_ids
-      title: FightOption
+      title: CountOption
     HighlightOption:
       properties:
         id:
@@ -135,32 +181,6 @@ components:
       - id
       - otio_ready
       title: HighlightOption
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    CountOption:
-      properties:
-        value:
-          type: string
-          title: Value
-        count:
-          type: integer
-          title: Count
-        otio_ready_count:
-          type: integer
-          title: Otio Ready Count
-      type: object
-      required:
-      - value
-      - count
-      - otio_ready_count
-      title: CountOption
     ValidationError:
       properties:
         loc:
@@ -182,58 +202,40 @@ components:
       - msg
       - type
       title: ValidationError
-    HighlightOptionsResponse:
+    FightOption:
       properties:
-        project_id:
+        fight_number:
           type: integer
-          title: Project Id
-        project_name:
+          title: Fight Number
+        fight_name:
           anyOf:
           - type: string
           - type: 'null'
-          title: Project Name
-        event_types:
-          items:
-            $ref: '#/components/schemas/CountOption'
-          type: array
-          title: Event Types
-        teams:
-          items:
-            $ref: '#/components/schemas/CountOption'
-          type: array
-          title: Teams
-        players:
-          items:
-            $ref: '#/components/schemas/CountOption'
-          type: array
-          title: Players
-        fights:
-          items:
-            $ref: '#/components/schemas/FightOption'
-          type: array
-          title: Fights
-        highlights:
-          items:
-            $ref: '#/components/schemas/HighlightOption'
-          type: array
-          title: Highlights
-        total_highlights:
+          title: Fight Name
+        count:
           type: integer
-          title: Total Highlights
-        otio_ready_highlights:
+          title: Count
+        otio_ready_count:
           type: integer
-          title: Otio Ready Highlights
+          title: Otio Ready Count
+        round_numbers:
+          items:
+            type: integer
+          type: array
+          title: Round Numbers
+        highlight_ids:
+          items:
+            type: string
+          type: array
+          title: Highlight Ids
       type: object
       required:
-      - project_id
-      - event_types
-      - teams
-      - players
-      - fights
-      - highlights
-      - total_highlights
-      - otio_ready_highlights
-      title: HighlightOptionsResponse
+      - fight_number
+      - count
+      - otio_ready_count
+      - round_numbers
+      - highlight_ids
+      title: FightOption
   securitySchemes:
     HTTPBearer:
       type: http
