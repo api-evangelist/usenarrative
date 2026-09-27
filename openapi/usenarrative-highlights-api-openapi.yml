@@ -150,6 +150,95 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GetHighlightResponse:
+      properties:
+        highlight:
+          $ref: '#/components/schemas/HighlightMetadata'
+      type: object
+      required:
+      - highlight
+      title: GetHighlightResponse
+    ListHighlightsResponse:
+      properties:
+        highlights:
+          items:
+            $ref: '#/components/schemas/HighlightMetadata'
+          type: array
+          title: Highlights
+        total:
+          type: integer
+          title: Total
+      type: object
+      required:
+      - highlights
+      - total
+      title: ListHighlightsResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    BatchSignedUrlResponse:
+      properties:
+        signed_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Urls
+        signed_poster_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Poster Urls
+          default: {}
+        signed_portrait_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Portrait Urls
+          default: {}
+        signed_portrait_poster_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Portrait Poster Urls
+          default: {}
+        signed_square_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Square Urls
+          default: {}
+        signed_square_poster_urls:
+          additionalProperties:
+            type: string
+          type: object
+          title: Signed Square Poster Urls
+          default: {}
+        expires_in_seconds:
+          type: integer
+          title: Expires In Seconds
+      type: object
+      required:
+      - signed_urls
+      - expires_in_seconds
+      title: BatchSignedUrlResponse
     BatchSignedUrlRequest:
       properties:
         highlight_ids:
@@ -167,21 +256,15 @@ components:
       required:
       - highlight_ids
       title: BatchSignedUrlRequest
-    ListHighlightsResponse:
+    HTTPValidationError:
       properties:
-        highlights:
+        detail:
           items:
-            $ref: '#/components/schemas/HighlightMetadata'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Highlights
-        total:
-          type: integer
-          title: Total
+          title: Detail
       type: object
-      required:
-      - highlights
-      - total
-      title: ListHighlightsResponse
+      title: HTTPValidationError
     HighlightMetadata:
       properties:
         id:
@@ -307,81 +390,6 @@ components:
       required:
       - id
       title: HighlightMetadata
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    BatchSignedUrlResponse:
-      properties:
-        signed_urls:
-          additionalProperties:
-            type: string
-          type: object
-          title: Signed Urls
-        signed_poster_urls:
-          additionalProperties:
-            type: string
-          type: object
-          title: Signed Poster Urls
-          default: {}
-        signed_portrait_urls:
-          additionalProperties:
-            type: string
-          type: object
-          title: Signed Portrait Urls
-          default: {}
-        signed_portrait_poster_urls:
-          additionalProperties:
-            type: string
-          type: object
-          title: Signed Portrait Poster Urls
-          default: {}
-        signed_square_urls:
-          additionalProperties:
-            type: string
-          type: object
-          title: Signed Square Urls
-          default: {}
-        signed_square_poster_urls:
-          additionalProperties:
-            type: string
-          type: object
-          title: Signed Square Poster Urls
-          default: {}
-        expires_in_seconds:
-          type: integer
-          title: Expires In Seconds
-      type: object
-      required:
-      - signed_urls
-      - expires_in_seconds
-      title: BatchSignedUrlResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     SignedUrlResponse:
       properties:
         signed_url:
@@ -395,14 +403,6 @@ components:
       - signed_url
       - expires_in_seconds
       title: SignedUrlResponse
-    GetHighlightResponse:
-      properties:
-        highlight:
-          $ref: '#/components/schemas/HighlightMetadata'
-      type: object
-      required:
-      - highlight
-      title: GetHighlightResponse
   securitySchemes:
     HTTPBearer:
       type: http

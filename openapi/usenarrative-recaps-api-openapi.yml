@@ -194,6 +194,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    CreatePublicRecapResponse:
+      properties:
+        id:
+          type: integer
+          title: Id
+        status:
+          type: string
+          title: Status
+          default: queued
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+      type: object
+      required:
+      - id
+      title: CreatePublicRecapResponse
     CreatePublicRecapRequest:
       properties:
         name:
@@ -255,6 +273,42 @@ components:
       - project_id
       - target_duration_seconds
       title: CreatePublicRecapRequest
+    ListPublicRecapsResponse:
+      properties:
+        recaps:
+          items:
+            $ref: '#/components/schemas/PublicRecapResponse'
+          type: array
+          title: Recaps
+        total:
+          type: integer
+          title: Total
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+      type: object
+      required:
+      - recaps
+      - total
+      title: ListPublicRecapsResponse
+    BatchPublicRecapsResponse:
+      properties:
+        recaps:
+          items:
+            $ref: '#/components/schemas/PublicRecapResponse'
+          type: array
+          title: Recaps
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+      type: object
+      required:
+      - recaps
+      title: BatchPublicRecapsResponse
     RecapOptions:
       properties:
         start_style:
@@ -314,51 +368,6 @@ components:
           title: Target Duration Max Seconds
       type: object
       title: RecapOptions
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    BatchPublicRecapsResponse:
-      properties:
-        recaps:
-          items:
-            $ref: '#/components/schemas/PublicRecapResponse'
-          type: array
-          title: Recaps
-        next_cursor:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Cursor
-      type: object
-      required:
-      - recaps
-      title: BatchPublicRecapsResponse
-    ListPublicRecapsResponse:
-      properties:
-        recaps:
-          items:
-            $ref: '#/components/schemas/PublicRecapResponse'
-          type: array
-          title: Recaps
-        total:
-          type: integer
-          title: Total
-        next_cursor:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Next Cursor
-      type: object
-      required:
-      - recaps
-      - total
-      title: ListPublicRecapsResponse
     FightCeremonyConfig:
       properties:
         fight_number:
@@ -494,24 +503,15 @@ components:
       - status
       - project_id
       title: PublicRecapResponse
-    CreatePublicRecapResponse:
+    HTTPValidationError:
       properties:
-        id:
-          type: integer
-          title: Id
-        status:
-          type: string
-          title: Status
-          default: queued
-        task_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Task Id
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - id
-      title: CreatePublicRecapResponse
+      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

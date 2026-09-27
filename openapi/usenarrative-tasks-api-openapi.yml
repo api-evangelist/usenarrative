@@ -274,51 +274,27 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    NarrativeSport:
-      type: string
-      enum:
-      - soccer
-      - mma
-      - baseball
-      title: NarrativeSport
-    KillTaskResponse:
+    ValidationError:
       properties:
-        success:
-          $ref: '#/components/schemas/TaskResult'
-        task_id:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
           type: string
-          title: Task Id
-        status:
+          title: Message
+        type:
           type: string
-          title: Status
-        instance_terminated:
-          type: boolean
-          title: Instance Terminated
-          default: false
+          title: Error Type
       type: object
       required:
-      - success
-      - task_id
-      - status
-      title: KillTaskResponse
-    CreateTaskResponse:
-      properties:
-        success:
-          $ref: '#/components/schemas/TaskResult'
-        task_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Task Id
-        srt_url:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Srt Url
-      type: object
-      required:
-      - success
-      title: CreateTaskResponse
+      - loc
+      - msg
+      - type
+      title: ValidationError
     AssignTaskResponse:
       properties:
         success:
@@ -341,37 +317,40 @@ components:
       - success
       - status
       title: AssignTaskResponse
-    WarmupResponse:
+    GetTaskStatusResponse:
       properties:
         success:
           $ref: '#/components/schemas/TaskResult'
-        narrative_task_id:
+        task_id:
           type: string
-          title: Narrative Task Id
-        error:
+          title: Task Id
+        ready:
+          type: boolean
+          title: Ready
+          default: false
+      type: object
+      required:
+      - success
+      - task_id
+      title: GetTaskStatusResponse
+    CreateTaskResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        task_id:
           anyOf:
           - type: string
           - type: 'null'
-          title: Error
+          title: Task Id
+        srt_url:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Srt Url
       type: object
       required:
       - success
-      - narrative_task_id
-      title: WarmupResponse
-    ListTasksResponse:
-      properties:
-        success:
-          $ref: '#/components/schemas/TaskResult'
-        tasks:
-          items:
-            $ref: '#/components/schemas/TaskInfo'
-          type: array
-          title: Tasks
-          default: []
-      type: object
-      required:
-      - success
-      title: ListTasksResponse
+      title: CreateTaskResponse
     RenderVideoOptions:
       properties:
         render_video:
@@ -388,57 +367,49 @@ components:
       required:
       - render_video
       title: RenderVideoOptions
-    HTTPValidationError:
+    ExtendLifeResponse:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        task_id:
           type: string
-          title: Message
-        type:
+          title: Task Id
+        status:
           type: string
-          title: Error Type
+          title: Status
+        max_life_hours:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Max Life Hours
+        previous_max_life_hours:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Previous Max Life Hours
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    TeamNames:
+      - success
+      - task_id
+      - status
+      title: ExtendLifeResponse
+    WarmupRequest:
       properties:
-        home_team_name:
-          type: string
-          title: Home Team Name
-        away_team_name:
-          type: string
-          title: Away Team Name
+        sport:
+          $ref: '#/components/schemas/NarrativeSport'
+        max_life_hours:
+          type: number
+          title: Max Life Hours
+          default: 6
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
       type: object
       required:
-      - home_team_name
-      - away_team_name
-      title: TeamNames
-    Body_kill_task_v1_tasks__task_id__kill_post:
-      properties:
-        wait_for_renders:
-          type: boolean
-          title: Wait For Renders
-          default: true
-      type: object
-      title: Body_kill_task_v1_tasks__task_id__kill_post
+      - sport
+      title: WarmupRequest
     AssignTaskRequest:
       properties:
         narrative_task_id:
@@ -486,70 +457,6 @@ components:
       required:
       - narrative_task_id
       title: AssignTaskRequest
-    ExtendLifeRequest:
-      properties:
-        max_life_hours:
-          type: number
-          maximum: 48
-          exclusiveMinimum: 0
-          title: Max Life Hours
-      type: object
-      required:
-      - max_life_hours
-      title: ExtendLifeRequest
-    WarmupRequest:
-      properties:
-        sport:
-          $ref: '#/components/schemas/NarrativeSport'
-        max_life_hours:
-          type: number
-          title: Max Life Hours
-          default: 6
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-      type: object
-      required:
-      - sport
-      title: WarmupRequest
-    OtioOutputConfig:
-      properties:
-        target_url:
-          anyOf:
-          - type: string
-            minLength: 1
-          - type: 'null'
-          title: Target Url
-        source_start_offset:
-          type: integer
-          title: Source Start Offset
-          default: 0
-        metadata:
-          anyOf:
-          - additionalProperties: true
-            type: object
-          - type: 'null'
-          title: Metadata
-      type: object
-      title: OtioOutputConfig
-    GetTaskStatusResponse:
-      properties:
-        success:
-          $ref: '#/components/schemas/TaskResult'
-        task_id:
-          type: string
-          title: Task Id
-        ready:
-          type: boolean
-          title: Ready
-          default: false
-      type: object
-      required:
-      - success
-      - task_id
-      title: GetTaskStatusResponse
     TaskInfo:
       properties:
         task_id:
@@ -592,6 +499,15 @@ components:
       - task_id
       - task_status
       title: TaskInfo
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CreateTaskRequest:
       properties:
         sport:
@@ -646,6 +562,102 @@ components:
       required:
       - sport
       title: CreateTaskRequest
+    ExtendLifeRequest:
+      properties:
+        max_life_hours:
+          type: number
+          maximum: 48
+          exclusiveMinimum: 0
+          title: Max Life Hours
+      type: object
+      required:
+      - max_life_hours
+      title: ExtendLifeRequest
+    KillTaskResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        task_id:
+          type: string
+          title: Task Id
+        status:
+          type: string
+          title: Status
+        instance_terminated:
+          type: boolean
+          title: Instance Terminated
+          default: false
+      type: object
+      required:
+      - success
+      - task_id
+      - status
+      title: KillTaskResponse
+    TaskResult:
+      type: string
+      enum:
+      - success
+      - failure
+      title: TaskResult
+    TeamNames:
+      properties:
+        home_team_name:
+          type: string
+          title: Home Team Name
+        away_team_name:
+          type: string
+          title: Away Team Name
+      type: object
+      required:
+      - home_team_name
+      - away_team_name
+      title: TeamNames
+    ListTasksResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        tasks:
+          items:
+            $ref: '#/components/schemas/TaskInfo'
+          type: array
+          title: Tasks
+          default: []
+      type: object
+      required:
+      - success
+      title: ListTasksResponse
+    NarrativeSport:
+      type: string
+      enum:
+      - soccer
+      - mma
+      - baseball
+      title: NarrativeSport
+    WarmupResponse:
+      properties:
+        success:
+          $ref: '#/components/schemas/TaskResult'
+        narrative_task_id:
+          type: string
+          title: Narrative Task Id
+        error:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Error
+      type: object
+      required:
+      - success
+      - narrative_task_id
+      title: WarmupResponse
+    Body_kill_task_v1_tasks__task_id__kill_post:
+      properties:
+        wait_for_renders:
+          type: boolean
+          title: Wait For Renders
+          default: true
+      type: object
+      title: Body_kill_task_v1_tasks__task_id__kill_post
     GetTaskInfoResponse:
       properties:
         success:
@@ -658,38 +670,26 @@ components:
       required:
       - success
       title: GetTaskInfoResponse
-    TaskResult:
-      type: string
-      enum:
-      - success
-      - failure
-      title: TaskResult
-    ExtendLifeResponse:
+    OtioOutputConfig:
       properties:
-        success:
-          $ref: '#/components/schemas/TaskResult'
-        task_id:
-          type: string
-          title: Task Id
-        status:
-          type: string
-          title: Status
-        max_life_hours:
+        target_url:
           anyOf:
-          - type: number
+          - type: string
+            minLength: 1
           - type: 'null'
-          title: Max Life Hours
-        previous_max_life_hours:
+          title: Target Url
+        source_start_offset:
+          type: integer
+          title: Source Start Offset
+          default: 0
+        metadata:
           anyOf:
-          - type: number
+          - additionalProperties: true
+            type: object
           - type: 'null'
-          title: Previous Max Life Hours
+          title: Metadata
       type: object
-      required:
-      - success
-      - task_id
-      - status
-      title: ExtendLifeResponse
+      title: OtioOutputConfig
   securitySchemes:
     HTTPBearer:
       type: http

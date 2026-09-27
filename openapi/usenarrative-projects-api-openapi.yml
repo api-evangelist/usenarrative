@@ -90,32 +90,6 @@ components:
       - total_highlights
       - otio_ready_highlights
       title: HighlightOptionsResponse
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    CountOption:
-      properties:
-        value:
-          type: string
-          title: Value
-        count:
-          type: integer
-          title: Count
-        otio_ready_count:
-          type: integer
-          title: Otio Ready Count
-      type: object
-      required:
-      - value
-      - count
-      - otio_ready_count
-      title: CountOption
     HighlightOption:
       properties:
         id:
@@ -202,6 +176,32 @@ components:
       - msg
       - type
       title: ValidationError
+    CountOption:
+      properties:
+        value:
+          type: string
+          title: Value
+        count:
+          type: integer
+          title: Count
+        otio_ready_count:
+          type: integer
+          title: Otio Ready Count
+      type: object
+      required:
+      - value
+      - count
+      - otio_ready_count
+      title: CountOption
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     FightOption:
       properties:
         fight_number:
