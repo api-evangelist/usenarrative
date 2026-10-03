@@ -150,50 +150,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetHighlightResponse:
-      properties:
-        highlight:
-          $ref: '#/components/schemas/HighlightMetadata'
-      type: object
-      required:
-      - highlight
-      title: GetHighlightResponse
-    ListHighlightsResponse:
-      properties:
-        highlights:
-          items:
-            $ref: '#/components/schemas/HighlightMetadata'
-          type: array
-          title: Highlights
-        total:
-          type: integer
-          title: Total
-      type: object
-      required:
-      - highlights
-      - total
-      title: ListHighlightsResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     BatchSignedUrlResponse:
       properties:
         signed_urls:
@@ -239,6 +195,27 @@ components:
       - signed_urls
       - expires_in_seconds
       title: BatchSignedUrlResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     BatchSignedUrlRequest:
       properties:
         highlight_ids:
@@ -256,15 +233,6 @@ components:
       required:
       - highlight_ids
       title: BatchSignedUrlRequest
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     HighlightMetadata:
       properties:
         id:
@@ -390,6 +358,29 @@ components:
       required:
       - id
       title: HighlightMetadata
+    ListHighlightsResponse:
+      properties:
+        highlights:
+          items:
+            $ref: '#/components/schemas/HighlightMetadata'
+          type: array
+          title: Highlights
+        total:
+          type: integer
+          title: Total
+      type: object
+      required:
+      - highlights
+      - total
+      title: ListHighlightsResponse
+    GetHighlightResponse:
+      properties:
+        highlight:
+          $ref: '#/components/schemas/HighlightMetadata'
+      type: object
+      required:
+      - highlight
+      title: GetHighlightResponse
     SignedUrlResponse:
       properties:
         signed_url:
@@ -403,6 +394,15 @@ components:
       - signed_url
       - expires_in_seconds
       title: SignedUrlResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     HTTPBearer:
       type: http

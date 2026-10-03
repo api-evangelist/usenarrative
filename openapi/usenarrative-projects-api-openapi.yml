@@ -38,58 +38,61 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    HighlightOptionsResponse:
+    ValidationError:
       properties:
-        project_id:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    FightOption:
+      properties:
+        fight_number:
           type: integer
-          title: Project Id
-        project_name:
+          title: Fight Number
+        fight_name:
           anyOf:
           - type: string
           - type: 'null'
-          title: Project Name
-        event_types:
-          items:
-            $ref: '#/components/schemas/CountOption'
-          type: array
-          title: Event Types
-        teams:
-          items:
-            $ref: '#/components/schemas/CountOption'
-          type: array
-          title: Teams
-        players:
-          items:
-            $ref: '#/components/schemas/CountOption'
-          type: array
-          title: Players
-        fights:
-          items:
-            $ref: '#/components/schemas/FightOption'
-          type: array
-          title: Fights
-        highlights:
-          items:
-            $ref: '#/components/schemas/HighlightOption'
-          type: array
-          title: Highlights
-        total_highlights:
+          title: Fight Name
+        count:
           type: integer
-          title: Total Highlights
-        otio_ready_highlights:
+          title: Count
+        otio_ready_count:
           type: integer
-          title: Otio Ready Highlights
+          title: Otio Ready Count
+        round_numbers:
+          items:
+            type: integer
+          type: array
+          title: Round Numbers
+        highlight_ids:
+          items:
+            type: string
+          type: array
+          title: Highlight Ids
       type: object
       required:
-      - project_id
-      - event_types
-      - teams
-      - players
-      - fights
-      - highlights
-      - total_highlights
-      - otio_ready_highlights
-      title: HighlightOptionsResponse
+      - fight_number
+      - count
+      - otio_ready_count
+      - round_numbers
+      - highlight_ids
+      title: FightOption
     HighlightOption:
       properties:
         id:
@@ -155,27 +158,67 @@ components:
       - id
       - otio_ready
       title: HighlightOption
-    ValidationError:
+    HighlightOptionsResponse:
       properties:
-        loc:
+        project_id:
+          type: integer
+          title: Project Id
+        project_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Project Name
+        event_types:
           items:
-            anyOf:
-            - type: string
-            - type: integer
+            $ref: '#/components/schemas/CountOption'
           type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
+          title: Event Types
+        teams:
+          items:
+            $ref: '#/components/schemas/CountOption'
+          type: array
+          title: Teams
+        players:
+          items:
+            $ref: '#/components/schemas/CountOption'
+          type: array
+          title: Players
+        fights:
+          items:
+            $ref: '#/components/schemas/FightOption'
+          type: array
+          title: Fights
+        highlights:
+          items:
+            $ref: '#/components/schemas/HighlightOption'
+          type: array
+          title: Highlights
+        total_highlights:
+          type: integer
+          title: Total Highlights
+        otio_ready_highlights:
+          type: integer
+          title: Otio Ready Highlights
       type: object
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - project_id
+      - event_types
+      - teams
+      - players
+      - fights
+      - highlights
+      - total_highlights
+      - otio_ready_highlights
+      title: HighlightOptionsResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     CountOption:
       properties:
         value:
@@ -193,49 +236,6 @@ components:
       - count
       - otio_ready_count
       title: CountOption
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    FightOption:
-      properties:
-        fight_number:
-          type: integer
-          title: Fight Number
-        fight_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Fight Name
-        count:
-          type: integer
-          title: Count
-        otio_ready_count:
-          type: integer
-          title: Otio Ready Count
-        round_numbers:
-          items:
-            type: integer
-          type: array
-          title: Round Numbers
-        highlight_ids:
-          items:
-            type: string
-          type: array
-          title: Highlight Ids
-      type: object
-      required:
-      - fight_number
-      - count
-      - otio_ready_count
-      - round_numbers
-      - highlight_ids
-      title: FightOption
   securitySchemes:
     HTTPBearer:
       type: http
