@@ -194,83 +194,84 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    RecapOptions:
+    FightCeremonyConfig:
       properties:
-        start_style:
-          anyOf:
-          - type: string
-            enum:
-            - none
-            - short_walkout
-            - full_walkout
-          - type: 'null'
-          title: Start Style
-        ending_style:
-          anyOf:
-          - type: string
-            enum:
-            - auto
-            - decision_or_ending
-          - type: 'null'
-          title: Ending Style
-        pacing:
-          anyOf:
-          - type: string
-            enum:
-            - tight_action
-            - balanced
-            - action_sprint
-          - type: 'null'
-          title: Pacing
-        editorial_prompt:
-          anyOf:
-          - type: string
-            maxLength: 2000
-          - type: 'null'
-          title: Editorial Prompt
-        duration_mode:
-          anyOf:
-          - type: string
-            enum:
-            - exact
-            - range
-            - uncapped
-          - type: 'null'
-          title: Duration Mode
-        target_duration_min_seconds:
-          anyOf:
-          - type: integer
-            maximum: 3600
-            minimum: 60
-          - type: 'null'
-          title: Target Duration Min Seconds
-        target_duration_max_seconds:
-          anyOf:
-          - type: integer
-            maximum: 3600
-            minimum: 60
-          - type: 'null'
-          title: Target Duration Max Seconds
-      type: object
-      title: RecapOptions
-    CreatePublicRecapResponse:
-      properties:
-        id:
+        fight_number:
           type: integer
-          title: Id
-        status:
-          type: string
-          title: Status
-          default: queued
-        task_id:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Task Id
+          title: Fight Number
+        include_walkon:
+          type: boolean
+          title: Include Walkon
+          default: false
+        include_decision:
+          type: boolean
+          title: Include Decision
+          default: false
       type: object
       required:
-      - id
-      title: CreatePublicRecapResponse
+      - fight_number
+      title: FightCeremonyConfig
+    CreatePublicRecapRequest:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+        project_id:
+          type: integer
+          title: Project Id
+        target_duration_seconds:
+          type: integer
+          maximum: 3600
+          minimum: 0
+          title: Target Duration Seconds
+        exclude_event_types:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Exclude Event Types
+        selected_edit_ids:
+          anyOf:
+          - items:
+              type: string
+            type: array
+          - type: 'null'
+          title: Selected Edit Ids
+        recap_mode:
+          type: string
+          title: Recap Mode
+          default: custom
+        fight_ceremony_config:
+          anyOf:
+          - items:
+              $ref: '#/components/schemas/FightCeremonyConfig'
+            type: array
+          - type: 'null'
+          title: Fight Ceremony Config
+        render_video:
+          type: string
+          enum:
+          - ffmpeg
+          - none
+          title: Render Video
+          default: ffmpeg
+        sport:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sport
+        recap_options:
+          anyOf:
+          - $ref: '#/components/schemas/RecapOptions'
+          - type: 'null'
+      type: object
+      required:
+      - project_id
+      - target_duration_seconds
+      title: CreatePublicRecapRequest
     ListPublicRecapsResponse:
       properties:
         recaps:
@@ -291,53 +292,6 @@ components:
       - recaps
       - total
       title: ListPublicRecapsResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    FightCeremonyConfig:
-      properties:
-        fight_number:
-          type: integer
-          title: Fight Number
-        include_walkon:
-          type: boolean
-          title: Include Walkon
-          default: false
-        include_decision:
-          type: boolean
-          title: Include Decision
-          default: false
-      type: object
-      required:
-      - fight_number
-      title: FightCeremonyConfig
     PublicRecapResponse:
       properties:
         id:
@@ -435,67 +389,6 @@ components:
       - status
       - project_id
       title: PublicRecapResponse
-    CreatePublicRecapRequest:
-      properties:
-        name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Name
-        project_id:
-          type: integer
-          title: Project Id
-        target_duration_seconds:
-          type: integer
-          maximum: 3600
-          minimum: 0
-          title: Target Duration Seconds
-        exclude_event_types:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Exclude Event Types
-        selected_edit_ids:
-          anyOf:
-          - items:
-              type: string
-            type: array
-          - type: 'null'
-          title: Selected Edit Ids
-        recap_mode:
-          type: string
-          title: Recap Mode
-          default: custom
-        fight_ceremony_config:
-          anyOf:
-          - items:
-              $ref: '#/components/schemas/FightCeremonyConfig'
-            type: array
-          - type: 'null'
-          title: Fight Ceremony Config
-        render_video:
-          type: string
-          enum:
-          - ffmpeg
-          - none
-          title: Render Video
-          default: ffmpeg
-        sport:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Sport
-        recap_options:
-          anyOf:
-          - $ref: '#/components/schemas/RecapOptions'
-          - type: 'null'
-      type: object
-      required:
-      - project_id
-      - target_duration_seconds
-      title: CreatePublicRecapRequest
     BatchPublicRecapsResponse:
       properties:
         recaps:
@@ -512,6 +405,113 @@ components:
       required:
       - recaps
       title: BatchPublicRecapsResponse
+    RecapOptions:
+      properties:
+        start_style:
+          anyOf:
+          - type: string
+            enum:
+            - none
+            - short_walkout
+            - full_walkout
+          - type: 'null'
+          title: Start Style
+        ending_style:
+          anyOf:
+          - type: string
+            enum:
+            - auto
+            - decision_or_ending
+          - type: 'null'
+          title: Ending Style
+        pacing:
+          anyOf:
+          - type: string
+            enum:
+            - tight_action
+            - balanced
+            - action_sprint
+          - type: 'null'
+          title: Pacing
+        editorial_prompt:
+          anyOf:
+          - type: string
+            maxLength: 2000
+          - type: 'null'
+          title: Editorial Prompt
+        duration_mode:
+          anyOf:
+          - type: string
+            enum:
+            - exact
+            - range
+            - uncapped
+          - type: 'null'
+          title: Duration Mode
+        target_duration_min_seconds:
+          anyOf:
+          - type: integer
+            maximum: 3600
+            minimum: 60
+          - type: 'null'
+          title: Target Duration Min Seconds
+        target_duration_max_seconds:
+          anyOf:
+          - type: integer
+            maximum: 3600
+            minimum: 60
+          - type: 'null'
+          title: Target Duration Max Seconds
+      type: object
+      title: RecapOptions
+    CreatePublicRecapResponse:
+      properties:
+        id:
+          type: integer
+          title: Id
+        status:
+          type: string
+          title: Status
+          default: queued
+        task_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Task Id
+      type: object
+      required:
+      - id
+      title: CreatePublicRecapResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

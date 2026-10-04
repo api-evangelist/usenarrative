@@ -195,44 +195,6 @@ components:
       - signed_urls
       - expires_in_seconds
       title: BatchSignedUrlResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    BatchSignedUrlRequest:
-      properties:
-        highlight_ids:
-          items:
-            type: string
-          type: array
-          title: Highlight Ids
-        expiry:
-          type: integer
-          maximum: 86400
-          minimum: 900
-          title: Expiry
-          default: 86400
-      type: object
-      required:
-      - highlight_ids
-      title: BatchSignedUrlRequest
     HighlightMetadata:
       properties:
         id:
@@ -358,6 +320,19 @@ components:
       required:
       - id
       title: HighlightMetadata
+    SignedUrlResponse:
+      properties:
+        signed_url:
+          type: string
+          title: Signed Url
+        expires_in_seconds:
+          type: integer
+          title: Expires In Seconds
+      type: object
+      required:
+      - signed_url
+      - expires_in_seconds
+      title: SignedUrlResponse
     ListHighlightsResponse:
       properties:
         highlights:
@@ -373,6 +348,23 @@ components:
       - highlights
       - total
       title: ListHighlightsResponse
+    BatchSignedUrlRequest:
+      properties:
+        highlight_ids:
+          items:
+            type: string
+          type: array
+          title: Highlight Ids
+        expiry:
+          type: integer
+          maximum: 86400
+          minimum: 900
+          title: Expiry
+          default: 86400
+      type: object
+      required:
+      - highlight_ids
+      title: BatchSignedUrlRequest
     GetHighlightResponse:
       properties:
         highlight:
@@ -381,19 +373,6 @@ components:
       required:
       - highlight
       title: GetHighlightResponse
-    SignedUrlResponse:
-      properties:
-        signed_url:
-          type: string
-          title: Signed Url
-        expires_in_seconds:
-          type: integer
-          title: Expires In Seconds
-      type: object
-      required:
-      - signed_url
-      - expires_in_seconds
-      title: SignedUrlResponse
     HTTPValidationError:
       properties:
         detail:
@@ -403,6 +382,27 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http
