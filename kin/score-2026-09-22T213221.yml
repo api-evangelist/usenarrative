@@ -1,21 +1,19 @@
-# Kin Score artifact — usenarrative — 2026-08-25T154045
+# Kin Score artifact — usenarrative — 2026-09-22T213221
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: usenarrative
-  schema_version: 0.14.0
-  scored_at: '2026-08-25'
-  run_ts: 2026-08-25T154045
-  composite: 42.2
+  schema_version: 0.22.0
+  scored_at: '2026-09-22'
+  run_ts: 2026-09-22T213221
+  composite: 39.5
   band: developing
   facets:
-    discoverability: 81.5
+    discoverability: 75.9
     contract_quality: 48.5
-    governance: 16.7
+    contract_governance: 4.5
     operational_transparency: 18.4
     developer_ergonomics: 49.4
-    commercial_clarity: 38.2
-    contract_governance: 16.7
     access_clarity: 38.2
   agent_readiness:
     score: 30.4
