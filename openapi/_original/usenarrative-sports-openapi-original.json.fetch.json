@@ -1,0 +1,12 @@
+{
+ "url": "https://api.narrative-sports.com/openapi.json",
+ "requested_url": "https://api.narrative-sports.com/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 44105,
+ "sha256": "bab6af886f8e7950d5650e2f5289055408f4d66d0b307dafcfbb980a78717b6e",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.923), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
