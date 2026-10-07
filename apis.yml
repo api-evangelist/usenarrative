@@ -141,6 +141,8 @@ apis:
   - type: GettingStarted
     url: https://docs.narrative-sports.com/quickstart
 common:
+- type: Plans
+  url: plans/usenarrative-plans-pricing.yml
 - type: Website
   url: https://www.narrative-sports.com/
 - type: Documentation
