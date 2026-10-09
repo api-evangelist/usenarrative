@@ -1,0 +1,41 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.narrative-sports.com/pricing
+sources:
+- https://www.narrative-sports.com/pricing
+- https://narrative-sports.com/pricing
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: On-premises hosting
+published: false
+note: Single enterprise tier with no numeric pricing; on-premises hosting offered under enterprise agreement.
+plan_count: 1
+plans:
+- name: ENTERPRISE
+  price_text: Contact us
+  period: none
+  included_quota: On-premises hosting; custom integrations into MAM/vendors; advanced analytics and monitoring;
+    state-of-the-art AI editing models; custom fine-tuning; virtually unlimited processing scale; dedicated
+    infrastructure and 24/7 support
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: ENTERPRISE
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
