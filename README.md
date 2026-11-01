@@ -64,17 +64,136 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Narrative Sports (Narrative AI Inc., YC Fall 2025 — listed by Y Combinator as
-"usenarrative") is an AI-powered sports content platform that automates the
-creation and distribution of broadcast-ready highlight videos for broadcasters,
-teams, and leagues. Its API ingests live SRT streams for soccer and MMA,
-detects key moments in real time, and returns rendered clips, single-game
-recaps, multi-game highlight packages, and OTIO edit timelines.
+Narrative Sports (Narrative AI Inc., YC Fall 2025, listed by Y Combinator as "usenarrative") is an AI-powered sports content platform that automates the creation and distribution of broadcast-ready highlight videos for broadcasters, teams, and leagues. Its API ingests live SRT streams for soccer and MMA, detects key moments in real time, and returns rendered clips in multiple aspect ratios, single-game recaps, multi-game highlight packages, and OTIO edit timelines.
 
-- Website: https://www.narrative-sports.com/
-- Docs: https://docs.narrative-sports.com/
-- API: https://api.narrative-sports.com (OpenAPI in `openapi/`)
-- Dashboard: https://app.narrative-sports.com/api-dashboard
-- Status: https://status.narrative-sports.com/
+**Areas:** Sports · Video · Artificial Intelligence · Highlights · Broadcasting · Media · Sports Technology
 
-Backed by: y-combinator
+## Narrative Sports on APIs.io
+
+Everything profiled for Narrative Sports is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/usenarrative/](https://apis.io/providers/usenarrative/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [Narrative Sports Health API](https://apis.io/apis/usenarrative/usenarrative-health-api/) — The Health API from Narrative Sports — 1 operation(s) for health.
+- [Narrative Sports Highlight Packages API](https://apis.io/apis/usenarrative/usenarrative-highlight-packages-api/) — The Highlight Packages API from Narrative Sports — 3 operation(s) for highlight packages.
+- [Narrative Sports Highlights API](https://apis.io/apis/usenarrative/usenarrative-highlights-api/) — The Highlights API from Narrative Sports — 4 operation(s) for highlights.
+- [Narrative Sports Projects API](https://apis.io/apis/usenarrative/usenarrative-projects-api/) — The Projects API from Narrative Sports — 1 operation(s) for projects.
+- [Narrative Sports Recaps API](https://apis.io/apis/usenarrative/usenarrative-recaps-api/) — The Recaps API from Narrative Sports — 3 operation(s) for recaps.
+- [Narrative Sports Tasks API](https://apis.io/apis/usenarrative/usenarrative-tasks-api/) — The Tasks API from Narrative Sports — 8 operation(s) for tasks.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [usenarrative](https://apis.io/servers/usenarrative/usenarrative/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Usenarrative Agentic Access](https://apis.io/agentic-access/usenarrative/usenarrative-agentic-access/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Narrative Sports Health API](https://apis.io/collections/usenarrative/open-usenarrative-health-api/)
+- [Narrative Sports Health Highlight Packages API](https://apis.io/collections/usenarrative/open-usenarrative-highlight-packages-api/)
+- [Narrative Sports Health Highlights API](https://apis.io/collections/usenarrative/open-usenarrative-highlights-api/)
+- [Narrative Sports Health Projects API](https://apis.io/collections/usenarrative/open-usenarrative-projects-api/)
+- [Narrative Sports Health Recaps API](https://apis.io/collections/usenarrative/open-usenarrative-recaps-api/)
+- [Narrative Sports Health Tasks API](https://apis.io/collections/usenarrative/open-usenarrative-tasks-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Usenarrative Sports Overlay](https://apis.io/overlays/usenarrative/usenarrative-sports-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Usenarrative Authentication](https://apis.io/security/usenarrative/usenarrative-authentication/)
+- [Usenarrative Domain Security](https://apis.io/security/usenarrative/usenarrative-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Usenarrative Plans Pricing](https://apis.io/plans/usenarrative/usenarrative-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.narrative-sports.com/)
+- [Documentation](https://docs.narrative-sports.com/)
+- [Getting started](https://docs.narrative-sports.com/quickstart)
+- [API reference](https://docs.narrative-sports.com/api-reference/sports/introduction)
+- [Pricing](https://narrative-sports.com/pricing)
+- [Support](https://narrative-sports.com/support)
+- [Blog](https://narrative-sports.com/blog)
+- [Terms of service](https://narrative-sports.com/terms)
+- [Privacy policy](https://narrative-sports.com/privacy)
+- [GitHub](https://github.com/Narrative-Sports)
+- [Status](https://status.narrative-sports.com/)
+
+## API Evangelist rating
+
+**Kin Score 43.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 46.1 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 49.4 |
+| Access clarity | 59.2 |
+
+**Agent readiness 31.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 22.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/usenarrative/](https://apis.io/providers/usenarrative/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Narrative Sports: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/usenarrative/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
